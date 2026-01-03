@@ -1,0 +1,91 @@
+// Variáveis baseadas na imagem
+$neon-green: #68d64d; // Verde vibrante
+$dark-bg: #222222;
+$input-bg: #4a4a4a; // Cinzento dos inputs
+
+.auth-bg {
+  --background: #{$dark-bg};
+}
+
+.container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+}
+
+// Cabeçalho
+.header-section {
+  margin-bottom: 40px;
+  
+  .main-title {
+    color: $neon-green;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    color: #ccc;
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+// Inputs Personalizados
+.input-group {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .custom-input {
+    --background: #{$input-bg};
+    --color: white;
+    --placeholder-color: #ccc;
+    --padding-start: 15px;
+    border-radius: 15px; // Cantos arredondados
+    height: 50px;
+    font-size: 14px;
+  }
+}
+
+// Botão
+.btn-action {
+  --background: #{$neon-green};
+  --color: white;
+  --border-radius: 25px;
+  --box-shadow: none;
+  font-weight: bold;
+  height: 50px;
+  margin-top: 40px;
+  font-size: 18px;
+  text-transform: none; // Para não ficar tudo maiúsculo
+}
+
+// Rodapé
+.footer-link {
+  margin-top: 30px;
+  
+  p {
+    color: white;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .link-highlight {
+    color: $neon-green; // Link em verde? Na imagem parece branco/azul, mas verde fica melhor no tema
+    font-weight: bold;
+    text-decoration: underline; 
+    cursor: pointer;
+  }
+}

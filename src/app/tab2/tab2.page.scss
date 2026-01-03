@@ -1,0 +1,105 @@
+// Cores principais
+$neon-green: #2dd36f;
+$dark-bg: #1e1e1e;
+$card-bg: #2c2c2c;
+
+// 1. Cartões de Topo
+.stat-card {
+  background: $card-bg;
+  border-radius: 15px;
+  padding: 15px 5px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  ion-icon {
+    font-size: 24px;
+    color: #888;
+    margin-bottom: 5px;
+  }
+  
+  h1 {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    margin: 5px 0;
+  }
+  
+  p {
+    font-size: 10px;
+    color: #aaa;
+    margin: 0;
+    text-transform: uppercase;
+  }
+}
+
+// 2. Gráfico
+.chart-container {
+  background: $card-bg;
+  border-radius: 20px;
+  padding: 20px;
+  
+  h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #ddd;
+  }
+}
+
+.bar-chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 150px; // Altura do gráfico
+  border-bottom: 1px solid #444;
+  padding-bottom: 5px;
+}
+
+.bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.bar {
+  width: 20px;
+  background: linear-gradient(to top, $neon-green, #98e6b6);
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 5px;
+  transition: height 0.5s ease;
+  box-shadow: 0 0 10px rgba(45, 211, 111, 0.3); // Brilho neon
+}
+
+.label {
+  font-size: 12px;
+  color: #888;
+}
+
+// 3. Cartão Favorito
+.fav-card {
+  background: #333; // Um pouco mais claro para destacar
+  border-radius: 20px;
+  padding: 20px;
+  border-left: 5px solid $neon-green;
+  
+  p { margin: 0; color: #aaa; font-size: 14px; }
+  h2 { margin: 5px 0; color: white; font-weight: bold; }
+  small { color: #666; font-size: 12px; }
+}
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid $neon-green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  ion-icon {
+    font-size: 30px;
+    color: $neon-green;
+  }
+}

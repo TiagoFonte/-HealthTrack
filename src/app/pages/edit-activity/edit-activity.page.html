@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Atividade</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <form (ngSubmit)="saveChanges()">
+    
+    <ion-item class="ion-margin-bottom">
+      <ion-select label="Desporto" label-placement="floating" [(ngModel)]="activity.type" name="type">
+        <ion-select-option value="Corrida">Corrida</ion-select-option>
+        <ion-select-option value="Ciclismo">Ciclismo</ion-select-option>
+        <ion-select-option value="Ginásio">Ginásio</ion-select-option>
+        <ion-select-option value="Futebol">Futebol</ion-select-option>
+        <ion-select-option value="Boxe">Boxe</ion-select-option>
+        <ion-select-option value="Basket">Basket</ion-select-option>
+        <ion-select-option value="Outro">Outro</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-label position="stacked">Data e Hora</ion-label>
+      <ion-input type="datetime-local" [(ngModel)]="activity.date" name="date"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-input label="Duração (Min)" label-placement="floating" type="number" [(ngModel)]="activity.duration" name="duration"></ion-input>
+    </ion-item>
+
+    <ion-list-header>Intensidade</ion-list-header>
+    <ion-segment [(ngModel)]="activity.intensity" name="intensity" color="success" class="ion-margin-bottom">
+      <ion-segment-button value="Baixa">
+        <ion-label>Baixa</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Moderada">
+        <ion-label>Moderada</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Alta">
+        <ion-label>Alta</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-textarea label="Notas" label-placement="floating" [(ngModel)]="activity.notes" name="notes" rows="4"></ion-textarea>
+    </ion-item>
+
+    <div class="ion-padding-top">
+      <ion-button expand="block" color="success" type="submit" class="ion-margin-bottom">
+        Guardar Alterações
+      </ion-button>
+      
+      <ion-button expand="block" color="danger" (click)="confirmDelete()">
+        Eliminar Atividade
+      </ion-button>
+    </div>
+
+  </form>
+</ion-content>

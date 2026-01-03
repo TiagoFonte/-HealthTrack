@@ -1,0 +1,58 @@
+<ion-content [fullscreen]="true" class="auth-bg">
+  
+  <div class="container">
+    
+    <div class="header-section ion-text-center">
+      <h1 class="main-title">Criar nova <br> conta</h1>
+      <p class="subtitle" routerLink="/login">Já registado? Faz o login aqui</p>
+    </div>
+
+    <form class="form-section">
+      
+      <div class="input-group">
+        <label>NOME</label>
+        <ion-input 
+          class="custom-input" 
+          placeholder="Joel Fernandes" 
+          type="text"
+          [(ngModel)]="user.name" 
+          name="name">
+        </ion-input>
+      </div>
+
+      <div class="input-group">
+        <label>EMAIL</label>
+        <ion-input 
+          class="custom-input" 
+          placeholder="Joelfernandes@gmail.com" 
+          type="email"
+          [(ngModel)]="user.email" 
+          name="email">
+        </ion-input>
+      </div>
+
+      <div class="input-group">
+        <label>PASSWORD</label>
+        <ion-input 
+          class="custom-input" 
+          placeholder="******" 
+          type="password"
+          [(ngModel)]="user.password" 
+          name="password">
+        </ion-input>
+      </div>
+
+      <ion-button expand="block" class="btn-action ion-margin-top" (click)="register()">
+        Registar
+      </ion-button>
+
+    </form>
+
+    <div class="footer-link ion-text-center">
+      <p>Já tem conta?</p>
+      <span class="link-highlight" routerLink="/login">Login !</span>
+    </div>
+
+  </div>
+
+</ion-content>

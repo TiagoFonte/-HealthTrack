@@ -1,0 +1,78 @@
+// Cores da Imagem
+$neon-green: #82d446; // Um verde mais 'lima' como na imagem
+$dark-bg: #222222;
+
+.landing-bg {
+  --background: #{$dark-bg};
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 30px;
+}
+
+// Título
+.main-title {
+  color: $neon-green;
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+// Logótipo (Truque para sobrepor os ícones)
+.logo-wrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .heart-icon {
+    font-size: 140px;
+    color: $neon-green;
+    --ionicon-stroke-width: 40px; // Coração mais grosso
+  }
+
+  .plus-icon {
+    position: absolute;
+    font-size: 60px;
+    color: $neon-green;
+    font-weight: 900;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%); // Ajuste fino para centrar
+  }
+}
+
+// Botões
+.buttons-wrapper {
+  width: 100%;
+  max-width: 300px;
+}
+
+.btn-login {
+  --background: white;
+  --color: #{$neon-green};
+  --border-radius: 25px; // Arredondado
+  --box-shadow: none;
+  font-weight: bold;
+  margin-bottom: 15px;
+  height: 50px;
+  border: 2px solid $neon-green; // Borda verde opcional para ficar igual
+}
+
+.btn-register {
+  --background: #{$neon-green};
+  --color: white;
+  --border-radius: 25px; // Arredondado
+  --box-shadow: none;
+  font-weight: bold;
+  height: 50px;
+}

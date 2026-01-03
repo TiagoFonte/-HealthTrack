@@ -1,0 +1,79 @@
+// Variáveis locais
+$neon-green: #2dd36f;
+
+// Cabeçalho Avatar
+.profile-header {
+  margin-top: 20px;
+  
+  .avatar-container {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #333; // Borda escura
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  h2 {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .status {
+    color: $neon-green; // Verde para "Online"
+    font-size: 14px;
+    margin-top: 0;
+  }
+}
+
+// Títulos das Secções
+.section-title {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+// Lista Personalizada
+.custom-list {
+  background: transparent;
+
+  ion-item {
+    --background: transparent;
+    --padding-start: 0;
+    
+    ion-icon {
+      font-size: 24px;
+      margin-right: 15px;
+    }
+
+    p {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 2px;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 500;
+      margin-top: 0;
+    }
+  }
+}
+
+// Logout Específico
+.logout-item {
+  margin-top: 30px;
+  
+  .privacy-link {
+    font-size: 10px;
+    text-decoration: underline;
+  }
+}
