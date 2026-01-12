@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
 import { AddActivityPageRoutingModule } from './add-activity-routing.module';
-
 import { AddActivityPage } from './add-activity.page';
+import { MapModalComponent } from '../../components/map-modal/map-modal.component';
 
 @NgModule({
   imports: [
@@ -15,6 +13,9 @@ import { AddActivityPage } from './add-activity.page';
     IonicModule,
     AddActivityPageRoutingModule
   ],
-  declarations: [AddActivityPage]
+  declarations: [
+    AddActivityPage,
+    MapModalComponent 
+  ]
 })
 export class AddActivityPageModule {}

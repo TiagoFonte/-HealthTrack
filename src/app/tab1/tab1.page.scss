@@ -1,0 +1,247 @@
+/* --- CONFIGURAÇÕES DE FUNDO --- */
+.dashboard-content {
+  --background: var(--ion-background-color);
+}
+
+/* --- CABEÇALHO --- */
+.header-section {
+  padding: 25px 20px 10px;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+
+  .text-container {
+    .date { 
+      color: var(--ion-color-medium); 
+      font-size: 13px; 
+      text-transform: uppercase; 
+      letter-spacing: 1px; 
+      margin: 0; 
+    }
+    h1 { 
+      color: var(--ion-text-color); 
+      font-size: 26px; 
+      font-weight: 800; 
+      margin: 5px 0 0; 
+    }
+  }
+  
+  .profile-icon {
+    width: 48px; height: 48px; 
+    border-radius: 50%; 
+    overflow: hidden; 
+    border: 2px solid var(--ion-color-step-200);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    
+    img { width: 100%; height: 100%; object-fit: cover; }
+  }
+}
+
+/* --- CONTAINER PRINCIPAL --- */
+.cards-container {
+  padding: 10px 16px 40px;
+  display: flex; 
+  flex-direction: column; 
+  gap: 16px;
+}
+
+/* --- ESTILO BASE UNIFICADO PARA CARTÕES --- */
+.main-card, .content-card, .dica-container {
+  background: var(--ion-card-background, #fff); 
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  position: relative;
+  border: 1px solid var(--ion-color-step-100);
+}
+
+/* --- CABEÇALHO DOS CARTÕES --- */
+.card-header {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 15px;
+  
+  h3 { 
+    color: var(--ion-text-color); 
+    font-size: 17px; 
+    font-weight: 700; 
+    margin: 0; 
+  }
+  
+  .subtitle { font-size: 11px; color: var(--ion-color-medium); font-weight: 700; text-transform: uppercase; }
+
+  .date-badge { 
+    background: var(--ion-color-step-150); 
+    color: var(--ion-color-medium); 
+    padding: 3px 10px; 
+    border-radius: 10px; 
+    font-size: 11px; 
+    font-weight: 700; 
+    
+    &.success {
+      background: rgba(var(--ion-color-success-rgb), 0.12);
+      color: var(--ion-color-success);
+    }
+  }
+}
+
+/* --- GRID DE SENSORES (MINI CARDS) --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 5px;
+
+  .stat-mini-card {
+    background: var(--ion-card-background, #fff);
+    padding: 15px 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    border: 1px solid var(--ion-color-step-100);
+
+    ion-icon { font-size: 22px; margin-bottom: 8px; }
+
+    .stat-data {
+      text-align: center;
+      strong { display: block; font-size: 16px; font-weight: 800; color: var(--ion-text-color); line-height: 1; }
+      small { font-size: 10px; color: var(--ion-color-medium); text-transform: uppercase; font-weight: 700; margin-top: 4px; }
+    }
+
+    &.blue { ion-icon { color: var(--ion-color-primary); } }
+    &.red { ion-icon { color: var(--ion-color-danger); } }
+    &.orange { ion-icon { color: var(--ion-color-warning); } }
+  }
+}
+
+/* --- 1. CARD PRINCIPAL (ATIVIDADE HOJE) --- */
+.main-stats-row { 
+  display: flex; align-items: center; gap: 20px; 
+}
+
+.progress-container {
+  .progress-circle {
+    width: 105px; height: 105px; border-radius: 50%;
+    background: conic-gradient(var(--ion-color-success) calc(var(--percent) * 1%), var(--ion-color-step-200) 0%);
+    display: flex; align-items: center; justify-content: center;
+    
+    .inner-circle {
+      width: 90px; height: 90px; background: var(--ion-card-background, #fff); border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      .value { color: var(--ion-text-color); font-size: 24px; font-weight: 800; line-height: 1; }
+      .label { color: var(--ion-color-success); font-size: 11px; font-weight: 700; margin-top: 4px; }
+    }
+  }
+}
+
+.side-stats {
+  flex: 1; display: flex; flex-direction: column; gap: 12px;
+  .stat-item {
+    display: flex; align-items: center; gap: 10px;
+    .icon-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .icon-dot.orange { background: var(--ion-color-warning); }
+    .icon-dot.blue { background: var(--ion-color-primary); }
+    .icon-dot.green { background: var(--ion-color-success); }
+    .stat-val { display: block; color: var(--ion-text-color); font-size: 16px; font-weight: 700; }
+    .stat-label { display: block; color: var(--ion-color-medium); font-size: 11px; }
+  }
+}
+
+.card-footer {
+  margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--ion-color-step-150);
+  display: flex; justify-content: space-between; align-items: center;
+  span { color: var(--ion-color-primary); font-size: 14px; font-weight: 700; }
+}
+
+/* --- 2. RELATÓRIO MENSAL (HOVER) --- */
+.report-card.hover-effect:active { transform: scale(0.98); transition: transform 0.2s; }
+
+.report-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 5px;
+
+  .report-item {
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    background: var(--ion-color-step-50); padding: 12px 5px; border-radius: 16px;
+    ion-icon { font-size: 22px; margin-bottom: 6px; }
+    .report-info {
+      small { display: block; color: var(--ion-color-medium); font-size: 9px; text-transform: uppercase; font-weight: 700; }
+      strong { color: var(--ion-text-color); font-size: 14px; font-weight: 800; }
+    }
+  }
+}
+
+/* --- 3. HIDRATAÇÃO --- */
+.hydration-card {
+  .water-row {
+    display: flex; align-items: center; gap: 15px;
+    .water-icon-box {
+      width: 42px; height: 42px; background: var(--ion-color-step-150); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; color: var(--ion-color-primary); 
+      ion-icon { font-size: 22px; }
+    }
+    .water-info {
+      flex: 1;
+      .value-text h4 { margin: 0 0 6px; font-size: 17px; font-weight: 800; small { font-size: 12px; color: var(--ion-color-medium); font-weight: 400; } }
+      .mini-progress-track {
+        height: 7px; background: var(--ion-color-step-150); border-radius: 4px; overflow: hidden;
+        .mini-progress-fill { height: 100%; background: var(--ion-color-primary); transition: width 0.5s ease; }
+      }
+    }
+    .water-actions-mini {
+      display: flex; gap: 8px;
+      .mini-btn {
+        width: 36px; height: 36px; border-radius: 10px; border: none; display: flex; align-items: center; justify-content: center; font-size: 18px;
+        &.remove { background: transparent; color: var(--ion-color-medium); border: 1px solid var(--ion-color-step-200); }
+        &.add { background: var(--ion-color-primary); color: white; }
+      }
+    }
+  }
+}
+
+/* --- 4. GRÁFICO SEMANAL --- */
+.chart-container {
+  display: flex; justify-content: space-between; align-items: flex-end; height: 110px;
+  .bar-group {
+    display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%;
+    .bar-track {
+      width: 7px; height: 90px; background: var(--ion-color-step-150); border-radius: 10px; display: flex; align-items: flex-end;
+      .bar-fill { width: 100%; background: var(--ion-color-primary); border-radius: 10px; transition: height 0.5s ease;
+        &.active { background: var(--ion-color-success); } 
+      }
+    }
+    .day-label { color: var(--ion-color-medium); font-size: 10px; font-weight: 700; }
+  }
+}
+
+/* --- 5. DICA DO DIA (UNIFICADA) --- */
+.dica-container {
+  display: flex; align-items: center; gap: 15px; margin: 0; width: 100%;
+
+  .icon-section {
+    background: rgba(var(--ion-color-success-rgb), 0.1); width: 45px; height: 45px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    ion-icon { font-size: 24px; color: var(--ion-color-success); }
+  }
+
+  .text-section {
+    flex: 1;
+    h3 { margin: 0; font-size: 11px; font-weight: 800; color: var(--ion-color-medium); text-transform: uppercase; letter-spacing: 0.5px; }
+    p { margin: 4px 0 0; font-size: 14px; color: var(--ion-text-color); font-weight: 600; line-height: 1.3; font-style: italic; }
+  }
+}
+
+/* --- DARK MODE (ESSENCIAL PARA MOBILE) --- */
+:host-context(body.dark) {
+  .main-card, .content-card, .dica-container, .stat-mini-card {
+    background: #1e1e1e;
+    border-color: #333;
+  }
+  .inner-circle, .bar-track, .mini-progress-track, .water-icon-box, .report-item, .icon-section {
+    background: #2a2a2a !important;
+  }
+}
+
+.bottom-spacer { height: 30px; }

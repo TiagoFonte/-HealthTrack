@@ -1,0 +1,41 @@
+ion-content { --background: var(--ion-background-color); }
+
+.badge-list { display: flex; flex-direction: column; gap: 15px; }
+
+.badge-card {
+  background: var(--ion-card-background, var(--ion-color-step-50));
+  border-radius: 18px; padding: 15px; display: flex; gap: 15px; align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+  &.locked { 
+    opacity: 0.7; 
+    .circle { 
+        background: var(--ion-color-step-300) !important; 
+        /* Ícone semi-transparente no bloqueado, mas BRANCO */
+        color: rgba(255,255,255, 0.6) !important; 
+    }
+    h3 { color: var(--ion-color-medium); }
+  }
+
+  .icon-side {
+    .circle {
+      width: 50px; height: 50px; border-radius: 50%; 
+      display: flex; align-items: center; justify-content: center;
+      /* FIX ÍCONE BRANCO */
+      color: #ffffff !important; 
+      font-size: 24px; transition: all 0.3s;
+    }
+  }
+
+  .info-side {
+    flex: 1;
+    h3 { margin: 0; font-size: 16px; font-weight: 700; color: var(--ion-text-color); }
+    p { margin: 2px 0 8px; font-size: 12px; color: var(--ion-color-medium); }
+    
+    .progress-bar-bg {
+      height: 6px; width: 100%; background: var(--ion-color-step-150); border-radius: 10px; overflow: hidden;
+      .progress-fill { height: 100%; transition: width 0.5s ease; }
+    }
+    .progress-text { margin-top: 4px; font-size: 10px; font-weight: 700; text-align: right; color: var(--ion-color-medium); }
+  }
+}

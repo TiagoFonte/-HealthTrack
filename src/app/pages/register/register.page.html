@@ -1,58 +1,88 @@
-<ion-content [fullscreen]="true" class="auth-bg">
-  
-  <div class="container">
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/landing" color="success" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="auth-container">
     
-    <div class="header-section ion-text-center">
-      <h1 class="main-title">Criar nova <br> conta</h1>
-      <p class="subtitle" routerLink="/login">Já registado? Faz o login aqui</p>
+    <div class="header-section">
+      <h1 class="page-title">Criar nova conta</h1>
+      <p class="subtitle">Regista-te para começar a treinar</p>
     </div>
 
-    <form class="form-section">
+    <div class="form-section">
       
       <div class="input-group">
-        <label>NOME</label>
-        <ion-input 
-          class="custom-input" 
-          placeholder="Joel Fernandes" 
-          type="text"
-          [(ngModel)]="user.name" 
-          name="name">
-        </ion-input>
+        <ion-label>NOME</ion-label>
+        <div class="input-wrapper">
+          <ion-input 
+            type="text" 
+            placeholder="O teu nome" 
+            [(ngModel)]="user.name"
+            autocomplete="off">
+          </ion-input>
+        </div>
       </div>
 
       <div class="input-group">
-        <label>EMAIL</label>
-        <ion-input 
-          class="custom-input" 
-          placeholder="Joelfernandes@gmail.com" 
-          type="email"
-          [(ngModel)]="user.email" 
-          name="email">
-        </ion-input>
+        <ion-label>EMAIL</ion-label>
+        <div class="input-wrapper">
+          <ion-input 
+            type="email" 
+            placeholder="exemplo@email.com" 
+            [(ngModel)]="user.email"
+            autocomplete="off"
+            inputmode="email">
+          </ion-input>
+        </div>
       </div>
 
       <div class="input-group">
-        <label>PASSWORD</label>
-        <ion-input 
-          class="custom-input" 
-          placeholder="******" 
-          type="password"
-          [(ngModel)]="user.password" 
-          name="password">
-        </ion-input>
+        <ion-label>PASSWORD</ion-label>
+        <div class="input-wrapper">
+          <ion-input 
+            type="password" 
+            placeholder="******" 
+            [(ngModel)]="user.password"
+            (ionInput)="checkPasswordStrength(user.password)"
+            autocomplete="new-password">
+          </ion-input>
+        </div>
+        
+        <div class="strength-meter" *ngIf="user.password">
+          <div class="strength-labels">
+            <small>Segurança: <strong>{{ passwordStrength }}</strong></small>
+          </div>
+          <ion-progress-bar [color]="passwordStrengthColor" [value]="passwordStrengthValue"></ion-progress-bar>
+        </div>
       </div>
 
-      <ion-button expand="block" class="btn-action ion-margin-top" (click)="register()">
+      <div class="input-group">
+        <ion-label>CONFIRMAR PASSWORD</ion-label>
+        <div class="input-wrapper">
+          <ion-input 
+            type="password" 
+            placeholder="******" 
+            [(ngModel)]="user.confirmPassword"
+            autocomplete="new-password">
+          </ion-input>
+        </div>
+      </div>
+
+      <ion-button expand="block" class="main-btn" (click)="register()">
         Registar
       </ion-button>
 
-    </form>
+    </div>
 
-    <div class="footer-link ion-text-center">
-      <p>Já tem conta?</p>
-      <span class="link-highlight" routerLink="/login">Login !</span>
+    <div class="footer-section">
+      <p>Já tens conta?</p>
+      <a routerLink="/login" class="login-link">Login!</a>
     </div>
 
   </div>
-
 </ion-content>

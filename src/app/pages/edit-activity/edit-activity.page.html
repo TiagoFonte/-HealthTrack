@@ -1,63 +1,107 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/tab2" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Editar Atividade</ion-title>
+    <ion-title>{{ t.editActivityTitle || 'Editar Atividade' }}</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="deleteActivity()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-
-  <form (ngSubmit)="saveChanges()">
-    
-    <ion-item class="ion-margin-bottom">
-      <ion-select label="Desporto" label-placement="floating" [(ngModel)]="activity.type" name="type">
-        <ion-select-option value="Corrida">Corrida</ion-select-option>
-        <ion-select-option value="Ciclismo">Ciclismo</ion-select-option>
-        <ion-select-option value="Ginásio">Ginásio</ion-select-option>
-        <ion-select-option value="Futebol">Futebol</ion-select-option>
-        <ion-select-option value="Boxe">Boxe</ion-select-option>
-        <ion-select-option value="Basket">Basket</ion-select-option>
-        <ion-select-option value="Outro">Outro</ion-select-option>
+<ion-content class="ion-padding">
+  
+  <div class="form-group">
+    <label>{{ t.sportLabel || 'Desporto' }}</label>
+    <div class="custom-input">
+      <ion-icon name="fitness-outline" class="input-icon"></ion-icon>
+      <ion-select [(ngModel)]="type" [placeholder]="t.selectPlaceholder || 'Selecionar'" interface="action-sheet">
+        <ion-select-option *ngFor="let s of sports" [value]="s">
+          {{ t[s] || s }}
+        </ion-select-option>
       </ion-select>
-    </ion-item>
-
-    <ion-item class="ion-margin-bottom">
-      <ion-label position="stacked">Data e Hora</ion-label>
-      <ion-input type="datetime-local" [(ngModel)]="activity.date" name="date"></ion-input>
-    </ion-item>
-
-    <ion-item class="ion-margin-bottom">
-      <ion-input label="Duração (Min)" label-placement="floating" type="number" [(ngModel)]="activity.duration" name="duration"></ion-input>
-    </ion-item>
-
-    <ion-list-header>Intensidade</ion-list-header>
-    <ion-segment [(ngModel)]="activity.intensity" name="intensity" color="success" class="ion-margin-bottom">
-      <ion-segment-button value="Baixa">
-        <ion-label>Baixa</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="Moderada">
-        <ion-label>Moderada</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="Alta">
-        <ion-label>Alta</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-
-    <ion-item class="ion-margin-bottom">
-      <ion-textarea label="Notas" label-placement="floating" [(ngModel)]="activity.notes" name="notes" rows="4"></ion-textarea>
-    </ion-item>
-
-    <div class="ion-padding-top">
-      <ion-button expand="block" color="success" type="submit" class="ion-margin-bottom">
-        Guardar Alterações
-      </ion-button>
-      
-      <ion-button expand="block" color="danger" (click)="confirmDelete()">
-        Eliminar Atividade
-      </ion-button>
     </div>
+  </div>
 
-  </form>
+  <div class="form-row">
+    <div class="form-group half">
+      <label>{{ t.durationLabel || 'Duração (min)' }}</label>
+      <div class="custom-input">
+        <ion-icon name="time-outline" class="input-icon"></ion-icon>
+        <ion-input type="number" [(ngModel)]="duration" placeholder="0"></ion-input>
+      </div>
+    </div>
+    
+    <div class="form-group half">
+      <label>{{ t.intensityLabel || 'Intensidade' }}</label>
+      <div class="custom-input">
+        <ion-select [(ngModel)]="intensity" interface="popover">
+          <ion-select-option value="Baixa">{{ t.low || 'Baixa' }}</ion-select-option>
+          <ion-select-option value="Moderada">{{ t.moderate || 'Moderada' }}</ion-select-option>
+          <ion-select-option value="Alta">{{ t.high || 'Alta' }}</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>{{ t.howFelt || 'Como te sentiste?' }}</label>
+    <div class="feeling-row">
+      <div class="feeling-opt" [class.selected]="feeling === 'tired'" (click)="feeling = 'tired'">
+        <span>😫</span>
+        <small>{{ t.feltTired || 'Cansado' }}</small>
+      </div>
+      <div class="feeling-opt" [class.selected]="feeling === 'good'" (click)="feeling = 'good'">
+        <span>😊</span>
+        <small>{{ t.feltGood || 'Bem' }}</small>
+      </div>
+      <div class="feeling-opt" [class.selected]="feeling === 'energized'" (click)="feeling = 'energized'">
+        <span>🤩</span>
+        <small>{{ t.feltEnergized || 'Energizado' }}</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>{{ t.dateLabel || 'Data' }}</label>
+    <div class="custom-input">
+      <ion-icon name="calendar-outline" class="input-icon"></ion-icon>
+      <ion-datetime-button datetime="datetime-edit"></ion-datetime-button>
+    </div>
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime-edit" presentation="date" [(ngModel)]="date" [preferWheel]="true"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </div>
+
+  <div class="form-group">
+    <label>{{ t.locationLabel || 'Localização' }}</label>
+    <div class="custom-input map-trigger" (click)="openMap()">
+      <div class="loc-container" style="display: flex; align-items: center; gap: 10px;">
+        <ion-icon name="location-outline" class="input-icon" style="margin: 0;"></ion-icon>
+        <span class="loc-text" [class.placeholder]="!location">
+          {{ location || (t.mapPlaceholder || 'Toque para abrir mapa') }}
+        </span>
+      </div>
+      <ion-icon name="map-outline" color="primary"></ion-icon>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>{{ t.notesLabel || 'Notas' }}</label>
+    <div class="custom-input">
+      <ion-textarea [(ngModel)]="notes" [placeholder]="t.notesPlaceholder || 'Escreve aqui...'" [autoGrow]="true" rows="3"></ion-textarea>
+    </div>
+  </div>
+
+  <ion-button expand="block" color="success" class="action-btn" (click)="updateActivity()">
+    {{ t.updateBtn || 'ATUALIZAR ATIVIDADE' }}
+  </ion-button>
+
+  <div style="height: 30px;"></div>
 </ion-content>

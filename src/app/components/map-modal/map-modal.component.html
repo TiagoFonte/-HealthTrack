@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Selecionar Local</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="modal_map" style="height: 100%; width: 100%;"></div>
+  
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed" *ngIf="selectedLat">
+    <ion-fab-button color="primary" (click)="confirmSelection()" style="width: 140px; --border-radius: 20px;">
+      <ion-icon name="checkmark" slot="start"></ion-icon>
+      <span style="font-size: 14px; font-weight: 700;">Confirmar</span>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

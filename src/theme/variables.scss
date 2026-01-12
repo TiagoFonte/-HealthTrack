@@ -1,2 +1,36 @@
-// For information on how to create your own theme, please refer to:
-// https://ionicframework.com/docs/theming/
+/* --- CORES GERAIS DA APP --- */
+:root {
+  /* MODO CLARO (LIGHT MODE) - Padrão */
+  --page-bg: #f4f5f8;        /* Fundo cinza claro */
+  --card-bg: #ffffff;        /* Cartões brancos */
+  --input-bg: #ffffff;       /* Inputs brancos */
+  --text-main: #000000;      /* Texto preto */
+  --text-sub: #666666;       /* Texto cinza */
+  --icon-color: #555555;     /* Ícones cinzentos */
+  --icon-active: #2dd36f;    /* Ícones ativos (verde) */
+  --border-color: #e0e0e0;   /* Linhas cinza */
+  --shadow-color: rgba(0,0,0,0.1); /* Sombra suave */
+  
+  /* Variáveis do Ionic (Obrigatórias para componentes nativos) */
+  --ion-background-color: var(--page-bg);
+  --ion-text-color: var(--text-main);
+  --ion-item-background: var(--card-bg);
+}
+
+/* MODO ESCURO (DARK MODE) */
+body.dark {
+  --page-bg: #000000;        /* Preto Puro */
+  --card-bg: #1c1c1e;        /* Cinza iOS */
+  --input-bg: #1c1c1e;
+  --text-main: #ffffff;      /* Texto Branco */
+  --text-sub: #98989d;       /* Texto cinza claro */
+  --icon-color: #ffffff;     /* Ícones brancos */
+  --icon-active: #2dd36f;
+  --border-color: #2c2c2e;   /* Linhas escuras */
+  --shadow-color: rgba(0,0,0,0.5);
+
+  /* Atualiza Ionic */
+  --ion-background-color: var(--page-bg);
+  --ion-text-color: var(--text-main);
+  --ion-item-background: var(--card-bg);
+}

@@ -1,0 +1,70 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1" text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ pageTitle }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div *ngIf="type === 'hydration'" class="hydro-container">
+    <div class="big-circle">
+      <svg width="220" height="220" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="90" fill="none" stroke="var(--border-color)" stroke-width="10" />
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#3498db" stroke-width="10"
+                stroke-dasharray="565" [attr.stroke-dashoffset]="565 - (565 * waterLevel / waterGoal)"
+                transform="rotate(-90 100 100)" stroke-linecap="round" style="transition: all 1s;" />
+      </svg>
+      <div class="inner-text">
+        <h1>{{ ((waterLevel / waterGoal) * 100) | number:'1.0-0' }}%</h1>
+        <p>{{ waterLevel }} / {{ waterGoal }}ml</p>
+      </div>
+    </div>
+
+    <div class="add-buttons">
+      <div class="btn-option" (click)="addWater(250)">
+        <ion-icon name="water"></ion-icon><span>+250ml</span>
+      </div>
+      <div class="btn-option" (click)="addWater(500)">
+        <ion-icon name="beer"></ion-icon><span>+500ml</span>
+      </div>
+    </div>
+
+    <div class="history-list">
+      <h3>{{ t.history || 'Histórico' }}</h3>
+      <div class="log-item" *ngFor="let log of waterLog">
+        <div class="left"><ion-icon name="water" color="primary"></ion-icon><span>Água</span></div>
+        <div class="right"><span>{{ log.amount }}ml</span><small>{{ log.time }}</small></div>
+      </div>
+      <ion-button expand="block" fill="outline" color="danger" class="reset-btn" (click)="resetWater()">
+        {{ t.reset || 'Reiniciar' }}
+      </ion-button>
+    </div>
+  </div>
+
+  <div *ngIf="type === 'calories' || type === 'minutes'" class="stats-container">
+    <div class="summary-card" [class.orange]="type === 'calories'" [class.blue]="type === 'minutes'">
+      <h1>{{ totalValue | number:'1.0-0' }}</h1>
+      <p>{{ type === 'calories' ? (t.totalBurned || 'Kcal') : (t.totalDuration || 'Minutos') }}</p>
+    </div>
+
+    <h3>{{ type === 'calories' ? (t.topBurners) : (t.longestWorkouts) }}</h3>
+
+    <div class="ranking-list">
+      <div class="rank-item" *ngFor="let item of topActivities; let i = index">
+        <div class="rank-number">{{ i + 1 }}</div>
+        <div class="rank-info">
+          <h4>{{ item.type }}</h4>
+          <p>{{ item.date | date:'dd MMM' }}</p>
+        </div>
+        <div class="rank-value">
+          {{ type === 'calories' ? (item.calories | number:'1.0-0') + ' Kcal' : item.duration + ' min' }}
+        </div>
+      </div>
+      <div *ngIf="topActivities.length === 0" class="empty-state"><p>{{ t.noActivities }}</p></div>
+    </div>
+  </div>
+
+</ion-content>

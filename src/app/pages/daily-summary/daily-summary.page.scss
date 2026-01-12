@@ -1,0 +1,228 @@
+/* =========================================
+   1. ESTRUTURA GERAL
+   ========================================= */
+ion-content {
+  --background: var(--ion-background-color);
+}
+
+ion-toolbar {
+  --background: var(--ion-background-color);
+  ion-title {
+    font-weight: 700;
+    color: var(--ion-text-color);
+  }
+}
+
+/* =========================================
+   2. CONTAINER DE RESUMO (TOPO)
+   ========================================= */
+.summary-container {
+  padding: 20px 20px 30px;
+  text-align: center;
+  background: var(--ion-background-color);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  
+  /* Sombra suave apenas no modo claro */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+/* Data */
+.date-display {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: var(--ion-color-step-100, #f0f0f0);
+  
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ion-color-medium);
+  text-transform: capitalize;
+  margin-bottom: 20px;
+
+  ion-icon { font-size: 16px; }
+}
+
+/* Calorias (Destaque Gigante) */
+.main-stat {
+  margin: 10px 0 35px;
+  position: relative;
+  display: inline-block;
+  
+  .value {
+    font-size: 72px; /* Bem grande */
+    font-weight: 800;
+    color: var(--ion-text-color);
+    letter-spacing: -3px;
+    line-height: 0.9;
+  }
+  
+  .unit {
+    position: absolute;
+    top: 5px;
+    right: -45px;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ion-color-primary);
+    transform: rotate(-10deg);
+  }
+}
+
+/* Linha de Estatísticas (3 Caixas) */
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+
+  .stat-box {
+    flex: 1;
+    background: var(--ion-card-background, #ffffff);
+    padding: 18px 10px;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    transition: transform 0.2s;
+
+    .stat-val {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ion-text-color);
+      margin-bottom: 4px;
+    }
+    
+    .stat-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--ion-color-medium);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+/* =========================================
+   3. CRONOLOGIA (TIMELINE)
+   ========================================= */
+.timeline-section {
+  padding: 25px 20px 40px;
+
+  h3 {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-left: 5px;
+    color: var(--ion-text-color);
+    letter-spacing: 0.5px;
+  }
+}
+
+.no-data {
+  text-align: center;
+  color: var(--ion-color-medium);
+  font-style: italic;
+  margin-top: 30px;
+  opacity: 0.7;
+}
+
+/* Item da Lista */
+.activity-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  margin-bottom: 14px;
+  background: var(--ion-card-background, #ffffff);
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  position: relative;
+  overflow: hidden;
+
+  /* Coluna Hora */
+  .time-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ion-color-medium);
+    margin-right: 15px;
+    border-right: 1px solid var(--ion-color-step-100, #eee);
+    padding-right: 15px;
+    
+    .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      margin-top: 6px;
+      border: 2px solid var(--ion-card-background);
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
+    }
+  }
+
+  /* Coluna Informação */
+  .info-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    .act-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ion-text-color);
+      margin-bottom: 4px;
+    }
+    
+    .act-details {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ion-color-medium);
+      
+      ion-icon { font-size: 14px; color: var(--ion-color-primary); }
+    }
+  }
+
+  /* Coluna Calorias (+ value) */
+  .cal-col {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--ion-color-success);
+    background: rgba(var(--ion-color-success-rgb), 0.1);
+    padding: 6px 12px;
+    border-radius: 12px;
+  }
+}
+
+/* =========================================
+   4. MODO ESCURO (DARK MODE PRO)
+   ========================================= */
+:host-context(body.dark) {
+  
+  /* Ajuste no fundo da cronologia para contraste */
+  .timeline-section {
+    background: transparent;
+  }
+
+  /* Cartões Escuros */
+  .stat-box, .activity-item {
+    background: #1e1e1e; /* Cinza Escuro */
+    box-shadow: none;
+    border: 1px solid #333; /* Borda subtil */
+  }
+
+  /* Ajustes de Texto */
+  .main-stat .value { color: #ffffff; }
+  .date-display { 
+    background: #1e1e1e; 
+    border: 1px solid #333;
+  }
+
+  /* Linha separadora na lista */
+  .time-col {
+    border-right-color: #333;
+  }
+}

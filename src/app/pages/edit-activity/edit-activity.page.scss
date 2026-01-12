@@ -1,0 +1,176 @@
+/* =========================================
+   1. ESTRUTURA E FUNDO
+   ========================================= */
+ion-content {
+  --background: var(--ion-background-color);
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+  /* Labels (Títulos dos campos) */
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--ion-color-medium);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding-left: 4px;
+  }
+}
+
+/* Layout lado a lado (Duração / Intensidade) */
+.form-row {
+  display: flex;
+  gap: 15px;
+  .half { flex: 1; }
+}
+
+/* =========================================
+   2. INPUTS PERSONALIZADOS (ESTILO PRO)
+   ========================================= */
+.custom-input {
+  /* Fundo Branco no Light Mode */
+  background: var(--ion-card-background, #ffffff);
+  border-radius: 14px;
+  padding: 2px 15px; 
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03); 
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  min-height: 50px;
+
+  /* Ícone à esquerda */
+  .input-icon {
+    font-size: 20px;
+    margin-right: 12px;
+    color: var(--ion-color-medium);
+    min-width: 24px;
+    text-align: center;
+  }
+
+  /* O Input em si */
+  ion-input, ion-textarea, ion-select, ion-datetime-button {
+    --padding-start: 0;
+    font-weight: 600;
+    font-size: 16px;
+    --placeholder-color: var(--ion-color-medium);
+    --color: var(--ion-text-color);
+    width: 100%;
+  }
+
+  ion-textarea {
+    margin-top: 5px;
+  }
+}
+
+/* Estado de Foco */
+.custom-input:focus-within {
+  border-color: var(--ion-color-primary);
+  box-shadow: 0 4px 15px rgba(var(--ion-color-primary-rgb), 0.15);
+  transform: translateY(-1px);
+}
+
+/* TRIGGER DO MAPA */
+.map-trigger {
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 15px;
+  
+  .loc-text {
+    font-weight: 600;
+    color: var(--ion-text-color);
+    white-space: nowrap; 
+    overflow: hidden; text-overflow: ellipsis; max-width: 85%;
+  }
+  
+  .placeholder {
+    color: var(--ion-color-medium);
+    font-weight: 400;
+  }
+}
+
+/* =========================================
+   3. SELETOR DE SENTIMENTO (EMOJIS)
+   ========================================= */
+.feeling-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+
+  .feeling-opt {
+    flex: 1;
+    background: var(--ion-card-background, #ffffff);
+    border-radius: 14px;
+    padding: 12px 5px;
+    text-align: center;
+    border: 2px solid transparent;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    span {
+      display: block;
+      font-size: 26px;
+      margin-bottom: 6px;
+      transition: transform 0.2s;
+    }
+
+    small {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ion-color-medium);
+    }
+
+    /* ESTADO SELECIONADO (Verde) */
+    &.selected {
+      border-color: var(--ion-color-success);
+      background: rgba(var(--ion-color-success-rgb), 0.08);
+      transform: translateY(-2px);
+      
+      span { transform: scale(1.1); }
+      small { color: var(--ion-color-success); }
+    }
+  }
+}
+
+/* =========================================
+   4. BOTÃO DE AÇÃO (VERDE)
+   ========================================= */
+.action-btn {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  height: 50px;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  --border-radius: 14px;
+  --box-shadow: 0 10px 25px rgba(var(--ion-color-success-rgb), 0.35);
+  color: #ffffff !important; 
+  --color: #ffffff !important;
+}
+
+/* =========================================
+   5. MODO ESCURO (DARK MODE)
+   ========================================= */
+:host-context(body.dark) {
+  .custom-input, .feeling-opt {
+    background: #1e1e1e; 
+    border: 1px solid #333;
+    box-shadow: none;
+
+    input, ion-input, ion-select, ion-textarea {
+      color: #ffffff;
+      --placeholder-color: #777;
+    }
+  }
+
+  .feeling-opt.selected {
+    background: rgba(45, 211, 111, 0.15);
+    border-color: var(--ion-color-success);
+  }
+}

@@ -1,0 +1,214 @@
+/* =========================================
+   1. ESTRUTURA E FUNDO
+   ========================================= */
+ion-content {
+  --background: var(--ion-background-color);
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+  /* Labels (Títulos dos campos) */
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--ion-color-medium);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding-left: 4px;
+  }
+}
+
+/* Layout lado a lado (Duração / Intensidade) */
+.form-row {
+  display: flex;
+  gap: 15px;
+  .half { flex: 1; }
+}
+
+/* =========================================
+   2. INPUTS PERSONALIZADOS (ESTILO PRO)
+   ========================================= */
+.custom-input {
+  /* Fundo Branco no Light Mode (Mais limpo) */
+  background: var(--ion-card-background, #ffffff);
+  border-radius: 14px;
+  padding: 2px 15px; /* Altura confortável */
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03); /* Sombra suave */
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  min-height: 50px;
+
+  /* Ícone à esquerda */
+  .input-icon {
+    font-size: 20px;
+    margin-right: 12px;
+    color: var(--ion-color-medium);
+    min-width: 24px;
+    text-align: center;
+  }
+
+  /* O Input em si */
+  ion-input, ion-textarea, ion-select {
+    --padding-start: 0;
+    font-weight: 600;
+    font-size: 16px;
+    --placeholder-color: var(--ion-color-medium);
+    --color: var(--ion-text-color);
+    width: 100%;
+  }
+
+  /* Ajuste para Textarea */
+  ion-textarea {
+    margin-top: 5px;
+  }
+}
+
+/* Estado de Foco (Borda verde ou primária) */
+.custom-input:focus-within {
+  border-color: var(--ion-color-primary);
+  box-shadow: 0 4px 15px rgba(var(--ion-color-primary-rgb), 0.15);
+  transform: translateY(-1px);
+}
+
+/* TRIGGER DO MAPA (Parece um input mas é clicável) */
+.map-trigger {
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 15px;
+  
+  .loc-text {
+    font-weight: 600;
+    color: var(--ion-text-color);
+    white-space: nowrap; 
+    overflow: hidden; text-overflow: ellipsis; max-width: 85%;
+  }
+  
+  .placeholder {
+    color: var(--ion-color-medium);
+    font-weight: 400;
+  }
+}
+
+/* =========================================
+   3. SELETOR DE SENTIMENTO (EMOJIS)
+   ========================================= */
+.feeling-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+
+  .feeling-opt {
+    flex: 1;
+    background: var(--ion-card-background, #ffffff);
+    border-radius: 14px;
+    padding: 12px 5px;
+    text-align: center;
+    border: 2px solid transparent;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    span {
+      display: block;
+      font-size: 26px;
+      margin-bottom: 6px;
+      transition: transform 0.2s;
+    }
+
+    small {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ion-color-medium);
+    }
+
+    /* ESTADO SELECIONADO (Verde e Brilhante) */
+    &.selected {
+      border-color: var(--ion-color-success);
+      background: rgba(var(--ion-color-success-rgb), 0.08);
+      transform: translateY(-2px);
+      
+      span { transform: scale(1.1); }
+      small { color: var(--ion-color-success); }
+    }
+  }
+}
+
+/* =========================================
+   4. SELETOR DE RESULTADO (SEGMENT)
+   ========================================= */
+ion-segment {
+  background: rgba(var(--ion-color-primary-rgb), 0.05);
+  padding: 4px;
+  border-radius: 12px;
+
+  ion-segment-button {
+    --indicator-color: #fff;
+    --color: var(--ion-color-medium);
+    --color-checked: var(--ion-color-primary);
+    font-weight: 700;
+    
+    /* Sombra no selecionado */
+    &.segment-button-checked {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+  }
+}
+
+/* =========================================
+   5. BOTÃO DE AÇÃO (VERDE NEON)
+   ========================================= */
+.action-btn {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  height: 50px;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  --border-radius: 14px;
+  
+  /* Sombra Verde Brilhante */
+  --box-shadow: 0 10px 25px rgba(var(--ion-color-success-rgb), 0.35);
+  
+  /* Texto Branco sempre */
+  color: #ffffff !important; 
+  --color: #ffffff !important;
+}
+
+/* =========================================
+   6. MODO ESCURO (DARK MODE PRO)
+   ========================================= */
+:host-context(body.dark) {
+  
+  /* Inputs e Cartões Cinza Escuro (não preto total) */
+  .custom-input, .feeling-opt {
+    background: #1e1e1e; 
+    border: 1px solid #333;
+    box-shadow: none;
+
+    input, ion-input, ion-select, ion-textarea {
+      color: #ffffff;
+      --placeholder-color: #777;
+    }
+  }
+
+  /* Ajuste no Segmento */
+  ion-segment {
+    background: #1e1e1e;
+    ion-segment-button {
+      --indicator-color: #333; /* Botão selecionado fica cinza mais claro */
+      --color-checked: #fff;
+    }
+  }
+
+  /* Seleção de Sentimento no Dark Mode */
+  .feeling-opt.selected {
+    background: rgba(45, 211, 111, 0.15); /* Verde translúcido */
+    border-color: var(--ion-color-success);
+  }
+}

@@ -1,0 +1,82 @@
+<ion-content [fullscreen]="true" class="intro-content">
+  <div class="slide-container">
+    
+    <div *ngIf="step === 0" class="step-box animate__animated animate__fadeIn">
+      <div class="logo-section">
+        <h1 class="app-title">HealthTrack</h1>
+        <div class="logo-box">
+          <ion-icon name="heart-outline" class="heart-icon"></ion-icon>
+          <ion-icon name="add" class="plus-icon"></ion-icon>
+        </div>
+      </div>
+      <p class="tagline">O teu companheiro de fitness diário.</p>
+      <p class="description">Regista treinos, controla calorias e alcança as tuas metas.</p>
+      <ion-button expand="block" class="btn-register action-btn" (click)="next()">COMEÇAR AGORA</ion-button>
+    </div>
+
+    <div *ngIf="step === 1" class="step-box animate__animated animate__fadeInRight">
+      <h2>Identificação</h2>
+      <p>Como te podemos tratar?</p>
+      <ion-item lines="none" class="custom-input">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-input [(ngModel)]="userData.name" placeholder="Nome"></ion-input>
+      </ion-item>
+
+      <p class="ion-margin-top">O teu telemóvel</p>
+      <ion-item lines="none" class="custom-input">
+        <ion-icon name="call-outline" slot="start"></ion-icon>
+        <ion-input type="tel" [(ngModel)]="userData.phone" placeholder="9xxxxxxxx"></ion-input>
+      </ion-item>
+
+      <div class="nav-buttons">
+        <ion-button fill="clear" class="btn-back" (click)="back()">Voltar</ion-button>
+        <ion-button class="btn-register small-btn" (click)="next()" [disabled]="!userData.name || !userData.phone">Seguinte</ion-button>
+      </div>
+    </div>
+
+    <div *ngIf="step === 2" class="step-box animate__animated animate__fadeInRight">
+      <h2>Verificação</h2>
+      <p>Simulação de SMS para {{ userData.phone }}</p>
+      <div class="sms-code-container">
+        <ion-item lines="none" class="custom-input">
+          <ion-input type="number" [(ngModel)]="verificationCode" placeholder="0000" class="ion-text-center code-input"></ion-input>
+        </ion-item>
+        <p class="hint-text">Simulação: Digita <strong>qualquer código</strong> de 4 dígitos</p>
+      </div>
+      <div class="nav-buttons">
+        <ion-button fill="clear" class="btn-back" (click)="back()">Voltar</ion-button>
+        <ion-button class="btn-register small-btn" (click)="next()" [disabled]="!verificationCode">Verificar</ion-button>
+      </div>
+    </div>
+
+    <div *ngIf="step === 3" class="step-box animate__animated animate__fadeInRight">
+      <h2>Bio-dados</h2>
+      <p>Para métricas de saúde precisas.</p>
+      <div class="input-row">
+        <ion-item lines="none" class="custom-input half">
+          <ion-label position="stacked">Peso (kg)</ion-label>
+          <ion-input type="number" [(ngModel)]="userData.weight" placeholder="70"></ion-input>
+        </ion-item>
+        <ion-item lines="none" class="custom-input half">
+          <ion-label position="stacked">Altura (m)</ion-label>
+          <ion-input type="number" [(ngModel)]="userData.height" placeholder="1.75"></ion-input>
+        </ion-item>
+      </div>
+      <div class="nav-buttons">
+        <ion-button fill="clear" class="btn-back" (click)="back()">Voltar</ion-button>
+        <ion-button class="btn-register small-btn" (click)="next()" [disabled]="!userData.weight || !userData.height">Seguinte</ion-button>
+      </div>
+    </div>
+
+    <div *ngIf="step === 4" class="step-box animate__animated animate__fadeInRight">
+      <h2>Meta Diária</h2>
+      <div class="goal-circle">
+        <h1>{{ dailyGoal }}</h1>
+        <small>KCAL</small>
+      </div>
+      <ion-range min="100" max="2000" step="50" [(ngModel)]="dailyGoal" class="custom-range" pin="true"></ion-range>
+      <ion-button expand="block" class="btn-register action-btn finish-btn" (click)="finish()">CONCLUIR 🚀</ion-button>
+      <ion-button fill="clear" class="btn-back" (click)="back()">Voltar</ion-button>
+    </div>
+  </div>
+</ion-content>

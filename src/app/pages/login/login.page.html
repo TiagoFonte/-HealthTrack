@@ -1,0 +1,60 @@
+<ion-content class="ion-padding login-content">
+  <div class="login-container">
+    
+    <div class="header-section ion-text-center">
+      <h1 class="welcome-text">Bem Vindo!</h1>
+      <p>Insere os teus dados para continuar</p>
+    </div>
+
+    <ion-list lines="none" class="login-form">
+      
+      <div class="input-wrapper">
+        <ion-label>EMAIL</ion-label>
+        <ion-item class="custom-input" [class.input-error]="!isEmailValid && loginData.email">
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-input 
+            type="email" 
+            name="email_login_no_predict" 
+            [(ngModel)]="loginData.email" 
+            (ionInput)="validateEmail()"
+            placeholder="exemplo@email.com"
+            autocomplete="one-time-code" 
+            autocorrect="off"
+            spellcheck="false">
+          </ion-input>
+        </ion-item>
+        <small class="error-text" *ngIf="!isEmailValid && loginData.email">
+          Formato de email inválido
+        </small>
+      </div>
+
+      <div class="input-wrapper ion-margin-top">
+        <ion-label>PASSWORD</ion-label>
+        <ion-item class="custom-input">
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          <ion-input 
+            type="password" 
+            name="pwd_login_hidden"
+            [(ngModel)]="loginData.password" 
+            placeholder="••••••••••••"
+            autocomplete="new-password">
+          </ion-input>
+        </ion-item>
+      </div>
+
+      <ion-button 
+        expand="block" 
+        class="btn-login" 
+        (click)="onLogin()"
+        [disabled]="!canLogin()">
+        ENTRAR
+      </ion-button>
+    </ion-list>
+
+    <div class="footer-links ion-text-center ion-margin-top">
+      <p>Ainda não tens conta?</p>
+      <a (click)="goToRegister()" class="register-link">Criar conta nova</a>
+    </div>
+
+  </div>
+</ion-content>

@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab3" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ t.achievements || 'Conquistas' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <div class="badge-list">
+    <div class="badge-card" *ngFor="let b of displayBadges" [class.locked]="!b.earned">
+      
+      <div class="icon-side">
+        <div class="circle" [style.background]="b.earned ? 'var(--ion-color-' + b.color + ')' : 'var(--ion-color-step-200)'">
+          <ion-icon [name]="b.icon"></ion-icon>
+        </div>
+      </div>
+
+      <div class="info-side">
+        <h3>{{ b.name }}</h3>
+        <p>{{ b.desc }}</p>
+        
+        <div class="progress-bar-bg">
+          <div class="progress-fill" 
+               [style.width]="(b.progress / b.target * 100) + '%'"
+               [style.background]="'var(--ion-color-' + b.color + ')'">
+          </div>
+        </div>
+        
+        <div class="progress-text">
+          <span *ngIf="b.earned">{{ t.completed || 'COMPLETO!' }} 🎉</span>
+          <span *ngIf="!b.earned">{{ b.progress }} / {{ b.target }}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>

@@ -1,24 +1,14 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
-
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
-
+/* Importar CSS do Leaflet */
+@import "~leaflet/dist/leaflet.css";
 /* Basic CSS for apps built with Ionic */
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
 
-/* Optional CSS utils that can be commented out */
+/* Optional CSS utils */
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";
 @import "@ionic/angular/css/text-alignment.css";
@@ -28,10 +18,128 @@
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
+ * AQUI ESTAVA O ERRO!
+ * Tens de usar o 'dark.class.css' para o botão funcionar.
  */
+@import "@ionic/angular/css/palettes/dark.class.css"; 
+/* @import "@ionic/angular/css/palettes/dark.system.css"; <-- Comentei este */
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+
+/* --- TEMA GLOBAL (Light vs Dark) --- */
+
+/* 1. MODO CLARO (Pure White Mode) */
+:root {
+  /* Forçar Branco Puro em vez de cinzento */
+  --ion-background-color: #ffffff;
+  --ion-background-color-rgb: 255, 255, 255;
+  
+  --ion-text-color: #000000;
+  --ion-text-color-rgb: 0, 0, 0;
+
+  /* Componentes Ionic brancos */
+  --ion-toolbar-background: #ffffff;
+  --ion-item-background: #ffffff;
+  --ion-card-background: #ffffff;
+  
+  /* Nossas Variáveis Customizadas */
+  --custom-card-bg: #ffffff;          
+  --custom-border: #e0e0e0;           
+  --custom-icon: #555555;             
+  --custom-title: #333333;   
+  --custom-shadow: rgba(0, 0, 0, 0.08); /* Sombra para destacar o branco no branco */         
+}
+
+/* 2. MODO ESCURO (Ativado pela classe .dark) */
+body.dark {
+  /* Forçar Preto Apple */
+  --ion-background-color: #000000;    
+  --ion-background-color-rgb: 0, 0, 0;
+  
+  --ion-text-color: #ffffff;          
+  --ion-text-color-rgb: 255, 255, 255;
+
+  /* Componentes Ionic pretos/escuros */
+  --ion-toolbar-background: #000000;
+  --ion-item-background: #000000;
+  --ion-card-background: #1c1c1e;
+  
+  /* Nossas Variáveis Customizadas */
+  --custom-card-bg: #1c1c1e;          
+  --custom-border: #333333;
+  --custom-icon: #aaaaaa;
+  --custom-title: #ffffff;
+  --custom-shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* --- REGRAS DE FIXAÇÃO (Para evitar bugs de navegação) --- */
+
+ion-content {
+  --background: var(--ion-background-color) !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, ion-text {
+  color: var(--ion-text-color);
+}
+
+/* --- CORREÇÃO DE POP-UPS NO MODO ESCURO --- */
+body.dark {
+  
+  /* 1. Fundo dos Modais e Popovers */
+  ion-modal, ion-popover, ion-action-sheet {
+    --background: #1c1c1e;
+    --ion-background-color: #1c1c1e;
+    --ion-text-color: #ffffff;
+  }
+
+  /* 2. Calendário (Datetime) */
+  ion-datetime {
+    --background: #1c1c1e;
+    --background-rgb: 28, 28, 30;
+    --ion-text-color: #ffffff;
+    color: white;
+  }
+  
+  /* Cor dos dias/meses no calendário */
+  ion-datetime-button {
+    --background: #2c2c2e;
+    --color: #ffffff;
+  }
+
+  /* 3. Listas de Seleção (Select/Alert) */
+  .alert-wrapper, .action-sheet-group {
+    background: #1c1c1e !important;
+    --background: #1c1c1e !important;
+  }
+
+  .alert-title, .alert-message, .action-sheet-title {
+    color: #ffffff !important;
+  }
+
+  .alert-radio-label, .action-sheet-button {
+    color: #cccccc !important;
+  }
+  
+  /* Botão Selecionado */
+  [aria-checked="true"] .alert-radio-label {
+    color: #2dd36f !important; /* Verde */
+  }
+
+  .alert-button {
+    color: #2dd36f !important;
+  }
+  /* --- CORREÇÃO DO CALENDÁRIO (DATETIME) --- */
+ion-datetime {
+  --background: #1c1c1e;
+  --background-rgb: 28, 28, 30;
+  --ion-text-color: #ffffff;
+  color: #ffffff;
+}
+
+/* Modais e Popovers em Dark Mode */
+ion-modal, ion-popover, ion-content.datetime-content {
+  --background: #1c1c1e !important;
+  --ion-background-color: #1c1c1e !important;
+  color: white !important;
+}
+
+}

@@ -1,0 +1,148 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab3" text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title>
+      <span *ngIf="currentLanguage === 'pt'">Privacidade</span>
+      <span *ngIf="currentLanguage === 'en'">Privacy</span>
+      <span *ngIf="currentLanguage === 'es'">Privacidad</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <div class="legal-container">
+
+    <div *ngIf="currentLanguage === 'pt'">
+      <div class="section">
+        <h1>Política de Privacidade</h1>
+        <p class="last-updated">Última atualização: 12 de Janeiro de 2026</p>
+        <p>A tua privacidade é fundamental para nós. Esta política explica de forma transparente como a aplicação <strong>HealthTrack</strong> utiliza as funcionalidades do teu dispositivo e protege os teus dados.</p>
+      </div>
+
+      <div class="section">
+        <h2>1. Recolha e Armazenamento</h2>
+        <p>A HealthTrack opera segundo um princípio de <strong>"Privacidade Primeiro"</strong>. A aplicação funciona em modo offline e não requer criação de conta na nuvem.</p>
+        <ul>
+          <li><strong>Armazenamento Local:</strong> Todos os dados inseridos (treinos, peso, histórico, preferências) são guardados exclusivamente na memória interna do teu dispositivo.</li>
+          <li><strong>Sem Envio de Dados:</strong> Nós (desenvolvedores) não temos acesso à tua base de dados, nem vendemos as tuas informações a terceiros.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>2. Permissões Necessárias</h2>
+        <p>Para oferecer todas as funcionalidades, a aplicação solicita acesso a recursos específicos do telemóvel:</p>
+        <ul>
+          <li><strong>🏃 Atividade Física (Motion Sensors):</strong> Necessário para aceder ao podómetro e contar os teus passos diários automaticamente, mesmo com a aplicação em segundo plano.</li>
+          <li><strong>🔔 Notificações:</strong> Usado estritamente para enviar os lembretes locais que tu configuraste (ex: "Hora de treinar"). Não enviamos publicidade ou spam.</li>
+          <li><strong>📷 Câmara e Galeria:</strong> Necessário apenas se desejares personalizar o teu perfil com uma fotografia. A imagem é processada e guardada localmente.</li>
+          <li><strong>📍 Localização (GPS):</strong> Usado apenas quando abres o ecrã de mapas para visualizar o teu percurso. As tuas coordenadas não são rastreadas em segundo plano nem enviadas para servidores.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>3. Uso de Internet</h2>
+        <p>A aplicação pode usar a tua conexão de internet apenas para carregar os mapas visuais (OpenStreetMap) e recursos de tradução.</p>
+      </div>
+
+      <div class="section">
+        <h2>4. Segurança</h2>
+        <p>Como os dados residem no teu dispositivo, a segurança dos mesmos depende do acesso físico ao teu telemóvel. Recomendamos o uso de bloqueio de ecrã (PIN, padrão ou biometria).</p>
+      </div>
+    </div>
+
+    <div *ngIf="currentLanguage === 'en'">
+      <div class="section">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last updated: January 12, 2026</p>
+        <p>Your privacy is fundamental to us. This policy transparently explains how the <strong>HealthTrack</strong> app uses your device's features and protects your data.</p>
+      </div>
+
+      <div class="section">
+        <h2>1. Collection and Storage</h2>
+        <p>HealthTrack operates on a <strong>"Privacy First"</strong> principle. The app works in offline mode and does not require cloud account creation.</p>
+        <ul>
+          <li><strong>Local Storage:</strong> All entered data (workouts, weight, history, preferences) is stored exclusively on your device's internal memory.</li>
+          <li><strong>No Data Sharing:</strong> We (the developers) do not have access to your database, nor do we sell your information to third parties.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>2. Necessary Permissions</h2>
+        <p>To provide full functionality, the app requests access to specific device features:</p>
+        <ul>
+          <li><strong>🏃 Physical Activity (Motion Sensors):</strong> Required to access the pedometer and automatically count your daily steps, even when the app is in the background.</li>
+          <li><strong>🔔 Notifications:</strong> Used strictly to send the local reminders you have set (e.g., "Time to workout"). We do not send ads or spam.</li>
+          <li><strong>📷 Camera and Gallery:</strong> Required only if you wish to customize your profile with a photo. The image is processed and saved locally.</li>
+          <li><strong>📍 Location (GPS):</strong> Used only when you open the map screen to view your route. Your coordinates are not tracked in the background or sent to servers.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>3. Internet Usage</h2>
+        <p>The app may use your internet connection solely to load visual maps (OpenStreetMap) and translation resources.</p>
+      </div>
+
+      <div class="section">
+        <h2>4. Security</h2>
+        <p>Since data resides on your device, its security depends on physical access to your phone. We recommend using screen locks (PIN, pattern, or biometrics).</p>
+      </div>
+    </div>
+
+    <div *ngIf="currentLanguage === 'es'">
+      <div class="section">
+        <h1>Política de Privacidad</h1>
+        <p class="last-updated">Última actualización: 12 de Enero de 2026</p>
+        <p>Tu privacidad es fundamental para nosotros. Esta política explica de manera transparente cómo la aplicación <strong>HealthTrack</strong> utiliza las funciones de tu dispositivo y protege tus datos.</p>
+      </div>
+
+      <div class="section">
+        <h2>1. Recopilación y Almacenamiento</h2>
+        <p>HealthTrack opera bajo un principio de <strong>"Privacidad Primero"</strong>. La aplicación funciona en modo offline y no requiere la creación de una cuenta en la nube.</p>
+        <ul>
+          <li><strong>Almacenamiento Local:</strong> Todos los datos introducidos (entrenamientos, peso, historial, preferencias) se guardan exclusivamente en la memoria interna de tu dispositivo.</li>
+          <li><strong>Sin Envío de Datos:</strong> Nosotros (los desarrolladores) no tenemos acceso a tu base de datos, ni vendemos tu información a terceros.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>2. Permisos Necesarios</h2>
+        <p>Para ofrecer todas las funcionalidades, la aplicación solicita acceso a recursos específicos del móvil:</p>
+        <ul>
+          <li><strong>🏃 Actividad Física (Sensores de Movimiento):</strong> Necesario para acceder al podómetro y contar tus pasos diarios automáticamente, incluso con la aplicación en segundo plano.</li>
+          <li><strong>🔔 Notificaciones:</strong> Usado estrictamente para enviar los recordatorios locales que tú configuraste (ej: "Hora de entrenar"). No enviamos publicidad ni spam.</li>
+          <li><strong>📷 Cámara y Galería:</strong> Necesario solo si deseas personalizar tu perfil con una foto. La imagen se procesa y guarda localmente.</li>
+          <li><strong>📍 Ubicación (GPS):</strong> Usado solo cuando abres la pantalla de mapas para ver tu ruta. Tus coordenadas no se rastrean en segundo plano ni se envían a servidores.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>3. Uso de Internet</h2>
+        <p>La aplicación puede usar tu conexión a internet solo para cargar los mapas visuales (OpenStreetMap) y recursos de traducción.</p>
+      </div>
+
+      <div class="section">
+        <h2>4. Seguridad</h2>
+        <p>Dado que los datos residen en tu dispositivo, su seguridad depende del acceso físico a tu móvil. Recomendamos el uso de bloqueo de pantalla (PIN, patrón o biometría).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 *ngIf="currentLanguage === 'pt'">5. Contacto</h2>
+      <h2 *ngIf="currentLanguage === 'en'">5. Contact</h2>
+      <h2 *ngIf="currentLanguage === 'es'">5. Contacto</h2>
+      
+      <p *ngIf="currentLanguage === 'pt'">Se tiveres dúvidas, contacta-nos:</p>
+      <p *ngIf="currentLanguage === 'en'">If you have questions, contact us:</p>
+      <p *ngIf="currentLanguage === 'es'">Si tienes dudas, contáctanos:</p>
+      
+      <p class="contact-email">HealthTrack_official@gmail.com</p>
+    </div>
+
+    <div class="spacer"></div>
+
+  </div>
+</ion-content>

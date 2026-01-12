@@ -1,0 +1,3 @@
+/* Garante que os ícones do Leaflet aparecem */
+::ng-deep .leaflet-pane { z-index: 1; }
+::ng-deep .leaflet-bottom { z-index: 0; }

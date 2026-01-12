@@ -1,0 +1,134 @@
+/* ============================================================
+   1. ESTILOS BASE (MODO CLARO / LIGHT MODE)
+   ============================================================ */
+
+/* --- HEADER & TOOLBAR (CLARO) --- */
+ion-header {
+  box-shadow: none;
+}
+
+ion-toolbar {
+  --background: #f4f5f8; 
+  --color: #000000;
+  --border-width: 0; 
+}
+
+ion-title {
+  font-weight: 700;
+  color: #333333;
+}
+
+/* --- CONTEÚDO (CLARO) --- */
+ion-content {
+  --background: #f4f5f8;
+}
+
+/* --- TÍTULOS --- */
+.section-title {
+  margin: 20px 10px 10px;
+  font-size: 16px; 
+  font-weight: 700;
+  color: #666666;
+}
+
+/* --- CARTÕES (Brancos em Light Mode) --- */
+.stats-card, .chart-card, .input-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-bottom: 25px;
+}
+
+.stats-card {
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.chart-card {
+  padding: 15px;
+}
+
+/* --- INPUT CARD --- */
+.input-card {
+  margin: 0 16px 30px;
+  overflow: hidden;
+  
+  ion-item {
+    --background: #ffffff;
+    --padding-start: 10px;
+    --border-color: #f0f0f0;
+    
+    ion-label { 
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px; 
+      margin-bottom: 5px !important; color: #999999 !important;
+    }
+    ion-input { 
+      font-size: 18px; font-weight: 600; --padding-top: 5px; color: #000000;
+    }
+  }
+}
+
+/* --- GRÁFICO CIRCULAR --- */
+.imc-circle-wrapper {
+  position: relative; width: 120px; height: 120px; margin: 0 auto 15px;
+}
+.circular-chart { display: block; margin: 0 auto; max-width: 100%; max-height: 100%; }
+.circle-bg { fill: none; stroke: #eeeeee; stroke-width: 2.5; }
+.circle { fill: none; stroke-width: 2.5; stroke-linecap: round; transition: stroke-dasharray 0.6s ease; }
+
+.imc-content {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center;
+}
+.imc-value { font-size: 28px; font-weight: 800; color: #000000; line-height: 1; }
+.imc-label { font-size: 12px; font-weight: 600; color: #999999; }
+.imc-status { font-size: 20px; font-weight: 700; margin-bottom: 5px; color: #333; }
+.imc-desc { margin: 0; font-size: 12px; color: #888888; }
+
+
+/* ============================================================
+   2. MODO ESCURO FORÇADO (BLACK MODE / OLED)
+   ============================================================ */
+:host-context(body.dark) {
+
+  /* AQUI ESTÁ A MUDANÇA: #000000 (PRETO PURO) */
+  
+  /* 1. Barra de Topo Preta */
+  ion-header, ion-toolbar {
+    --background: #000000 !important; 
+    background: #000000 !important;
+    --color: #ffffff !important;
+    border-bottom: none !important; /* Remove qualquer linha cinza */
+  }
+
+  /* 2. Conteúdo Preto */
+  ion-content {
+    --background: #000000 !important;
+  }
+
+  /* Ícones e Textos da barra a Branco */
+  ion-back-button, ion-buttons, ion-title, ion-icon {
+    --color: #ffffff !important;
+    color: #ffffff !important;
+  }
+
+  /* 3. Cartões (Para destacar no fundo preto, usamos cinza muito escuro) */
+  .stats-card, .chart-card, .input-card {
+    background: #151515 !important; /* Um pouco mais claro que o fundo para se ver o cartão */
+    border: 1px solid #222222;
+    box-shadow: none;
+  }
+
+  /* 4. Inputs */
+  .input-card ion-item {
+    --background: #151515 !important;
+    --border-color: #222222;
+    ion-label { color: #aaaaaa !important; }
+    ion-input { color: #ffffff !important; }
+  }
+
+  /* 5. Textos Gerais */
+  .section-title { color: #e0e0e0; }
+  .imc-value, .imc-status { color: #ffffff !important; }
+  .circle-bg { stroke: #222222; }
+}

@@ -1,0 +1,59 @@
+ion-content { --background: var(--page-bg); }
+ion-toolbar { --background: var(--page-bg); ion-title { color: var(--text-main); font-weight: 800; } }
+
+/* HIDRATAÇÃO */
+.hydro-container {
+  display: flex; flex-direction: column; align-items: center;
+  .big-circle {
+    position: relative; width: 220px; height: 220px; margin: 30px 0;
+    .inner-text {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;
+      h1 { margin: 0; font-size: 40px; font-weight: 800; color: var(--text-main); }
+      p { margin: 0; color: var(--text-sub); font-weight: 600; }
+    }
+  }
+  .add-buttons {
+    display: flex; gap: 20px; margin-bottom: 40px;
+    .btn-option {
+      background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px;
+      width: 110px; height: 110px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 4px 15px var(--shadow-color);
+      ion-icon { font-size: 32px; color: #3498db; }
+      span { font-weight: 700; font-size: 16px; color: var(--text-main); }
+      &:active { transform: scale(0.95); opacity: 0.8; }
+    }
+  }
+  .history-list {
+    width: 100%;
+    h3 { margin-bottom: 15px; font-size: 18px; font-weight: bold; color: var(--text-main); }
+    .log-item {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--card-bg); padding: 15px; border-radius: 16px; margin-bottom: 10px;
+      border: 1px solid var(--border-color);
+      .left { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--text-main); }
+      .right { text-align: right; display: flex; flex-direction: column; span { font-weight: bold; color: #3498db; } small { color: var(--text-sub); font-size: 12px; } }
+    }
+    .reset-btn { margin-top: 30px; }
+  }
+}
+
+/* ESTATÍSTICAS */
+.stats-container {
+  .summary-card {
+    border-radius: 24px; padding: 40px 20px; text-align: center; margin-bottom: 30px; box-shadow: 0 10px 30px var(--shadow-color);
+    h1 { margin: 0; font-size: 56px; font-weight: 800; color: #fff; }
+    p { margin: 10px 0 0 0; font-weight: 700; opacity: 0.9; color: #fff; text-transform: uppercase; }
+    &.orange { background: linear-gradient(135deg, #ff9f43, #ff6b6b); }
+    &.blue { background: linear-gradient(135deg, #54a0ff, #2e86de); }
+  }
+  h3 { color: var(--text-main); font-size: 18px; margin-bottom: 15px; }
+  .ranking-list {
+    .rank-item {
+      display: flex; align-items: center; gap: 15px; background: var(--card-bg); padding: 15px; border-radius: 18px; margin-bottom: 12px; border: 1px solid var(--border-color);
+      .rank-number { width: 32px; height: 32px; background: var(--page-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--text-sub); }
+      .rank-info { flex: 1; h4 { margin: 0; font-size: 16px; font-weight: 700; color: var(--text-main); } p { margin: 4px 0 0 0; font-size: 12px; color: var(--text-sub); } }
+      .rank-value { font-weight: 800; font-size: 16px; color: var(--icon-active); }
+    }
+    .empty-state { text-align: center; color: var(--text-sub); margin-top: 40px; }
+  }
+}

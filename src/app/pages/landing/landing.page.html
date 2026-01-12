@@ -1,24 +1,26 @@
-<ion-content [fullscreen]="true" class="landing-bg">
-  
-  <div class="container ion-text-center">
+<ion-content [fullscreen]="true">
+  <div class="landing-container">
     
-    <h1 class="main-title">HealthTrack</h1>
-
-    <div class="logo-wrapper">
-      <ion-icon name="heart-outline" class="heart-icon"></ion-icon>
-      <ion-icon name="add" class="plus-icon"></ion-icon>
+    <div class="logo-section">
+      <h1 class="app-title">HealthTrack</h1>
+      
+      <div class="logo-box">
+        <ion-icon name="heart-outline" class="heart-icon"></ion-icon>
+        <ion-icon name="add" class="plus-icon"></ion-icon>
+      </div>
     </div>
 
-    <div class="buttons-wrapper">
-      <ion-button expand="block" class="btn-login" routerLink="/tabs/tab1">
+    <div class="actions-section">
+      
+      <ion-button expand="block" fill="outline" class="btn-login" routerLink="/login">
         Login
       </ion-button>
 
       <ion-button expand="block" class="btn-register" routerLink="/register">
         Registar
       </ion-button>
+      
     </div>
 
   </div>
-
 </ion-content>

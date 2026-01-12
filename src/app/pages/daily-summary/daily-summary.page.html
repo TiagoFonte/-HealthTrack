@@ -1,0 +1,75 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ t.daySummaryTitle || 'Resumo do Dia' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <div class="summary-container">
+    
+    <div class="date-display">
+      <ion-icon name="calendar-outline"></ion-icon>
+      {{ date | date:'d MMMM yyyy':undefined:(t.locale || 'pt-PT') }}
+    </div>
+
+    <div class="main-stat">
+      <span class="value">{{ summary.calories }}</span>
+      <span class="unit">{{ t.kcal || 'KCAL' }}</span>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-val">{{ summary.distance | number:'1.1-1' }}</div>
+        <div class="stat-label">KM {{ t.estimated || '(EST.)' }}</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-val">{{ formatDuration(summary.duration) }}</div>
+        <div class="stat-label">{{ t.totalTime || 'TEMPO TOTAL' }}</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-val">{{ summary.count }}</div>
+        <div class="stat-label">{{ t.workouts || 'TREINOS' }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-section">
+    <h3>{{ t.timeline || 'Cronologia' }}</h3>
+
+    <div class="activity-list">
+      
+      <p *ngIf="activities.length === 0" class="no-data">
+        {{ t.noActivities || 'Sem atividades neste dia.' }}
+      </p>
+
+      <div class="activity-item" *ngFor="let act of activities">
+        <div class="time-col">
+          {{ act.date | date:'HH:mm' }}
+          <div class="dot" [style.background]="getActivityColor(act.type)"></div>
+        </div>
+        
+        <div class="info-col">
+          <span class="act-title">{{ t[act.type] || act.type }}</span>
+          
+          <span class="act-details">
+            <ion-icon name="time-outline"></ion-icon> 
+            {{ act.duration }} min • 
+            {{ act.intensity === 'Baixa' ? t.low : (act.intensity === 'Moderada' ? t.moderate : t.high) }}
+          </span>
+        </div>
+        
+        <div class="cal-col">
+          +{{ act.calories }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>

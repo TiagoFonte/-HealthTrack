@@ -1,29 +1,22 @@
-// src/app/models/activity.model.ts
-
-// 1. Enum para a Intensidade (Requisito 1.1)
-export enum IntensityLevel {
-  LOW = 'Baixa',
-  MODERATE = 'Moderada',
-  HIGH = 'Alta'
-}
-
-// 2. Enum para o Tipo de Desporto
-export enum SportType {
-  RUNNING = 'Corrida',
-  CYCLING = 'Ciclismo',
-  GYM = 'Ginásio',
-  FOOTBALL = 'Futebol',
-  OTHER = 'Outro'
-}
-
-// 3. A Interface da Atividade
 export interface Activity {
   id: string;
-  type: SportType;
+  type: string;
   duration: number;
+  intensity: 'Baixa' | 'Moderada' | 'Alta';
   date: string;
-  location: string;
-  intensity: IntensityLevel;
+  calories: number;
+  location?: string;
   notes?: string;
-  isFavorite: boolean;
+  lat?: number;
+  lng?: number;
+  isFavorite?: boolean;
+  feeling?: string;
+  
+  // CAMPOS ADICIONAIS PARA MÉTRICAS DE SAÚDE (Resolve os erros TS2339)
+  distance?: number;   // Para o erro do daily-summary
+  steps?: number;      // Para as métricas de caminhada
+  avgBpm?: number;     // Para os batimentos cardíacos
+  elevation?: number;  // Para desnível em cardio
+  laps?: number;       // Para natação
+  outcome?: string;    // Para vitórias/derrotas em jogos
 }

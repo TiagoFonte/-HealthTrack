@@ -1,0 +1,132 @@
+/* Fundo da página */
+.login-content {
+  --background: #ffffff;
+}
+
+/* RESET TOTAL PARA O OPERA/CHROME */
+/* Remove as cores cinzentas forçadas pelo navegador no preenchimento automático */
+ion-input {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active {
+    /* Força a cor de fundo a ser a mesma do teu design (#f4f5f8) */
+    -webkit-box-shadow: 0 0 0px 1000px #f4f5f8 inset !important;
+    -webkit-text-fill-color: #222428 !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+.login-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 50px 20px 0;
+}
+
+/* Título Verde HealthTrack */
+.welcome-text {
+  color: #00c853; 
+  font-weight: 800;
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.header-section p {
+  color: #92949c;
+  font-size: 14px;
+}
+
+.login-form {
+  background: transparent;
+  padding: 20px 0;
+}
+
+.input-wrapper {
+  margin-bottom: 15px;
+
+  ion-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #222428;
+    margin-left: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* Estilo Base dos Inputs */
+.custom-input {
+  --background: #f4f5f8; 
+  --border-radius: 12px;
+  --padding-start: 15px;
+  --highlight-height: 0; /* Remove a linha colorida do Ionic ao focar */
+  margin-top: 8px;
+  border: 1px solid #e0e0e0;
+  transition: border-color 0.3s ease;
+
+  ion-icon {
+    color: #92949c;
+    font-size: 20px;
+  }
+
+  ion-input {
+    font-weight: 500;
+    color: #222428;
+    letter-spacing: 0.5px;
+  }
+
+  /* Destaque visual para erro de validação */
+  &.input-error {
+    border: 1px solid var(--ion-color-danger);
+  }
+}
+
+/* Mensagem de Erro de Email */
+.error-text {
+  color: var(--ion-color-danger);
+  font-size: 11px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-weight: 600;
+  display: block;
+}
+
+/* Botão de Login Profissional */
+.btn-login {
+  --background: #00c853;
+  --background-activated: #009624;
+  --border-radius: 25px;
+  height: 52px;
+  font-weight: 700;
+  margin-top: 30px;
+  --box-shadow: 0 4px 12px rgba(0, 200, 83, 0.2);
+  transition: all 0.3s ease;
+
+  /* Estilo para quando o botão está bloqueado */
+  &[disabled] {
+    opacity: 0.5;
+    --background: #a0a0a0;
+    --box-shadow: none;
+  }
+}
+
+/* Footer e Link de Registo */
+.footer-links {
+  p {
+    color: #92949c;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .register-link {
+    color: #00c853;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    
+    &:active {
+      opacity: 0.6;
+    }
+  }
+}

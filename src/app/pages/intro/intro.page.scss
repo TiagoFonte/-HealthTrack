@@ -1,0 +1,242 @@
+/* Variáveis Principais */
+$primary-green: #00c853;
+$bg-color: #f4f5f8;
+
+ion-content {
+  --background: #{$bg-color}; 
+}
+
+.intro-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.slide-container {
+  padding: 40px 30px;
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* --- LOGO --- */
+.logo-section {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .app-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: $primary-green;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .logo-box {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .heart-icon {
+      font-size: 140px;
+      color: $primary-green;
+      stroke-width: 2px;
+    }
+
+    .plus-icon {
+      position: absolute;
+      font-size: 50px;
+      color: $primary-green;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      font-weight: 900;
+    }
+  }
+}
+
+.step-box {
+  text-align: center;
+
+  .tagline {
+    font-size: 18px;
+    color: #222428;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .description {
+    color: #92949c;
+    font-size: 14px;
+    margin-bottom: 50px;
+    line-height: 1.5;
+    padding: 0 10px;
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #222428;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    color: #92949c;
+    margin-bottom: 15px;
+  }
+
+  /* --- INPUTS --- */
+  .custom-input {
+    --background: #ffffff;
+    --border-radius: 16px;
+    margin-bottom: 20px;
+    --padding-start: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    
+    ion-icon {
+      margin-right: 12px;
+      color: $primary-green;
+    }
+    
+    ion-label {
+      color: #92949c !important;
+      font-weight: 600;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    ion-input {
+      font-weight: 600;
+      color: #222428;
+      --placeholder-color: #b0b0b0;
+    }
+  }
+
+  /* ESTILO ESPECÍFICO PARA CÓDIGO SMS */
+  .sms-code-container {
+    max-width: 200px;
+    margin: 0 auto;
+    
+    .code-input {
+      font-size: 28px;
+      letter-spacing: 8px;
+      font-weight: 800;
+      color: $primary-green;
+    }
+
+    .hint-text {
+      font-size: 12px;
+      margin-top: 10px;
+      font-weight: 600;
+      color: var(--ion-color-medium);
+      
+      strong {
+        color: $primary-green;
+      }
+    }
+  }
+
+  .input-row {
+    display: flex;
+    gap: 15px;
+    .half { flex: 1; }
+  }
+
+  /* --- CÍRCULO META --- */
+  .goal-circle {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 40px;
+    border-radius: 50%;
+    border: 6px solid $primary-green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 200, 83, 0.15);
+
+    h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin: 0;
+      color: #222428;
+      line-height: 1;
+    }
+    small {
+      font-size: 13px;
+      font-weight: 700;
+      color: #92949c;
+      letter-spacing: 1px;
+      margin-top: 5px;
+    }
+  }
+  
+  /* --- SLIDER --- */
+  .custom-range {
+    --bar-background: #e0e0e0;
+    --bar-background-active: #00c853;
+    --knob-background: #00c853;
+    --pin-background: #00c853;
+    --pin-color: white;
+    padding-bottom: 30px;
+  }
+
+  /* --- BOTÕES --- */
+  .btn-register {
+    --background: #00c853;
+    --background-activated: #009624;
+    --color: #ffffff;
+    --border-radius: 25px;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: none;
+    --box-shadow: none;
+
+    &[disabled] {
+      opacity: 0.5;
+    }
+  }
+
+  .btn-back {
+    --color: #92949c;
+    font-weight: 600;
+  }
+
+  .action-btn {
+    height: 50px;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0 5px;
+    
+    .small-btn {
+      width: 140px;
+      height: 45px;
+    }
+  }
+
+  .finish-btn {
+    margin-top: 10px;
+  }
+}
+
+.bottom-spacer {
+  height: 20px;
+}

@@ -1,0 +1,58 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab3" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ t.healthStats }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="stats-card">
+    <div class="imc-circle-wrapper">
+      <svg viewBox="0 0 36 36" class="circular-chart">
+        <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+        <path class="circle" [attr.stroke-dasharray]="(imc > 40 ? 100 : (imc/40)*100) + ', 100'"
+              [attr.stroke]="'var(--ion-color-' + bmiColor + ')'"
+              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+      </svg>
+      <div class="imc-content">
+        <span class="imc-value">{{ imc | number:'1.1-1' }}</span>
+        <span class="imc-label">{{ t.bmi }}</span>
+      </div>
+    </div>
+    <div class="imc-status" [style.color]="'var(--ion-color-' + bmiColor + ')'">
+      {{ imcStatus }}
+    </div>
+    <p class="imc-desc">{{ t.bmiNote }}</p>
+  </div>
+
+  <div class="section-title">{{ t.weeklyStats }} 📈</div>
+  <div class="chart-card">
+    <canvas #weightCanvas style="height: 200px; width: 100%;"></canvas>
+  </div>
+
+  <div class="section-title">{{ t.personalData }} 📝</div>
+  
+  <ion-card class="input-card">
+    <ion-item lines="full">
+      <ion-icon name="scale-outline" slot="start" color="primary"></ion-icon>
+      <ion-label position="stacked">{{ t.weight | uppercase }} (KG)</ion-label>
+      <ion-input type="number" [(ngModel)]="userData.weight" (ionBlur)="updateWeight()"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-icon name="resize-outline" slot="start" color="secondary"></ion-icon>
+      <ion-label position="stacked">{{ t.height | uppercase }} (M)</ion-label>
+      <ion-input type="number" [(ngModel)]="userData.height" (ionBlur)="saveData('height')"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-icon name="flame-outline" slot="start" color="warning"></ion-icon>
+      <ion-label position="stacked">{{ t.dailyGoal | uppercase }} (KCAL)</ion-label>
+      <ion-input type="number" [(ngModel)]="userData.goal" (ionBlur)="saveData('goal')"></ion-input>
+    </ion-item>
+  </ion-card>
+
+</ion-content>

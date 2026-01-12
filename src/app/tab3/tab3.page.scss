@@ -1,79 +1,149 @@
-// Variáveis locais
-$neon-green: #2dd36f;
+/* --- PÁGINA PERFIL --- */
+.profile-content {
+  --background: var(--ion-background-color);
+}
 
-// Cabeçalho Avatar
 .profile-header {
-  margin-top: 20px;
+  text-align: center;
+  padding: 40px 20px 20px;
   
-  .avatar-container {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid #333; // Borda escura
-    
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+  .avatar-wrapper {
+    width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 15px; position: relative;
+    border: 3px solid var(--ion-color-step-100); box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .edit-badge {
+      position: absolute; bottom: 0; right: 0; background: #00c853; color: white;
+      width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      border: 2px solid var(--ion-background-color); font-size: 16px;
     }
   }
 
-  h2 {
-    font-weight: bold;
-    margin-bottom: 5px;
+  h2 { margin: 0; font-size: 24px; font-weight: 700; color: var(--ion-text-color); cursor: pointer; }
+  .user-email-text { margin: 5px 0 0; color: var(--ion-color-medium); font-size: 14px; cursor: pointer; }
+}
+
+.section-container { padding: 0 16px; }
+
+/* --- CARD SAÚDE (IMC) --- */
+.health-card {
+  background: var(--ion-card-background, #fff); border-radius: 22px; padding: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06); position: relative; overflow: hidden; margin-bottom: 25px;
+
+  .card-top-row { margin-bottom: 20px; text-align: center; }
+  
+  .bmi-display {
+    display: flex; flex-direction: column; align-items: center;
+    .bmi-number { font-size: 42px; font-weight: 800; line-height: 1; }
+    .bmi-text-group { 
+      margin-top: 5px; display: flex; flex-direction: column; align-items: center; gap: 4px;
+      .bmi-label { font-size: 12px; font-weight: 600; color: var(--ion-color-medium); }
+      .status-badge { padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; color: white; }
+    }
   }
 
-  .status {
-    color: $neon-green; // Verde para "Online"
-    font-size: 14px;
-    margin-top: 0;
+  .visual-bar-container {
+    margin-bottom: 25px;
+    .gradient-bar {
+      height: 12px; width: 100%; border-radius: 6px;
+      background: linear-gradient(90deg, #00c853 0%, #2dd36f 35%, #ffc409 60%, #eb445a 100%);
+      position: relative;
+      .marker-arrow {
+        position: absolute; top: -8px; transform: translateX(-50%);
+        .triangle-down { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #333; }
+      }
+    }
+    .bar-labels {
+      display: flex; justify-content: space-between; margin-top: 6px;
+      span { font-size: 9px; color: var(--ion-color-medium); font-weight: 600; text-transform: uppercase; }
+    }
+  }
+
+  .stats-row {
+    display: flex; justify-content: space-around; align-items: center;
+    .vertical-line { width: 1px; height: 30px; background: var(--ion-color-step-150); }
+    .stat-box {
+      display: flex; align-items: center; gap: 10px;
+      .icon-bubble {
+        width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px;
+        &.blue { background: rgba(0, 200, 83, 0.1); color: #00c853; } 
+        &.orange { background: rgba(255, 196, 9, 0.1); color: var(--ion-color-warning); }
+      }
+      .stat-text {
+        display: flex; flex-direction: column;
+        .value { font-size: 16px; font-weight: 700; color: var(--ion-text-color); }
+        .label { font-size: 11px; color: var(--ion-color-medium); }
+      }
+    }
+  }
+  .card-arrow-icon { position: absolute; top: 20px; right: 20px; color: var(--ion-color-step-300); }
+}
+
+/* --- SECÇÕES & LISTAS --- */
+.section-header-clickable {
+  padding: 0 20px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;
+  .section-title { font-size: 18px; font-weight: 800; color: var(--ion-text-color); }
+  .see-all { font-size: 12px; color: #00c853; font-weight: 700; display: flex; align-items: center; gap: 2px; }
+}
+
+/* --- GRID DE CONQUISTAS (CORRIGIDO) --- */
+.badges-grid {
+  display: flex; gap: 12px; padding: 0 16px 30px; overflow-x: auto;
+  &::-webkit-scrollbar { display: none; }
+  
+  .badge-item {
+    min-width: 80px; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    
+    .badge-icon {
+      width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+      font-size: 24px; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: all 0.3s ease; /* Animação suave */
+    }
+    
+    .badge-name { font-size: 11px; text-align: center; color: var(--ion-text-color); font-weight: 700; }
+    
+    /* ESTADO BLOQUEADO (LOCKED) */
+    &.locked { 
+      opacity: 0.6; /* Deixa semi-transparente */
+      
+      .badge-icon { 
+        /* Força cinzento usando !important para sobrepor o style inline do HTML se necessário */
+        background: var(--ion-color-step-200) !important; 
+        color: var(--ion-color-step-500) !important; 
+        box-shadow: none; 
+      }
+    }
   }
 }
 
-// Títulos das Secções
-.section-title {
-  font-size: 14px;
-  color: #ccc;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  font-weight: 600;
-}
+.simple-title { padding: 0 20px 10px; font-size: 13px; font-weight: 800; color: var(--ion-color-medium); text-transform: uppercase; letter-spacing: 0.5px; }
 
-// Lista Personalizada
+/* --- LISTAS CUSTOMIZADAS --- */
 .custom-list {
-  background: transparent;
-
+  background: transparent; padding: 0 16px; margin-bottom: 25px;
   ion-item {
-    --background: transparent;
-    --padding-start: 0;
+    --background: var(--ion-card-background, #fff); --border-radius: 16px; margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid var(--ion-color-step-100);
     
-    ion-icon {
-      font-size: 24px;
-      margin-right: 15px;
+    ion-icon[slot="start"] { color: #00c853; font-size: 22px; margin-right: 12px; }
+    
+    ion-label {
+      h3 { font-weight: 700; font-size: 14px; color: var(--ion-text-color); }
+      p { font-size: 13px; color: var(--ion-color-medium); }
     }
-
-    p {
-      font-size: 12px;
-      color: #888;
-      margin-bottom: 2px;
-    }
-
-    h3 {
-      font-size: 16px;
-      font-weight: 500;
-      margin-top: 0;
-    }
+    ion-toggle { --background-checked: #00c853; --handle-background-checked: #fff; }
+    .edit-icon { color: var(--ion-color-step-300); font-size: 18px; }
   }
 }
 
-// Logout Específico
-.logout-item {
-  margin-top: 30px;
-  
-  .privacy-link {
-    font-size: 10px;
-    text-decoration: underline;
-  }
+.logout-container {
+  padding: 20px 16px; text-align: center;
+  .logout-btn { --border-radius: 16px; font-weight: 700; height: 50px; text-transform: uppercase; letter-spacing: 1px; }
+  .version-text { color: var(--ion-color-step-400); font-size: 11px; margin-top: 15px; }
+}
+
+.footer-spacer { height: 40px; }
+
+/* DARK MODE */
+:host-context(body.dark) {
+  .health-card, ion-item { --background: #1e1e1e; border-color: #333; }
 }

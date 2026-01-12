@@ -1,79 +1,152 @@
-<ion-header [translucent]="true" class="ion-no-border">
-  <ion-toolbar>
-    <ion-title>Perfil</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content class="profile-content">
   
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Perfil</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div class="profile-header ion-text-center ion-margin-bottom">
-    <div class="avatar-container">
-      <img src="assets/icon/favicon.png" alt="Avatar" /> </div>
-    <h2>Joel Fernandes</h2>
-    <p class="status">● Online</p>
+  <div class="profile-header">
+    <div class="avatar-wrapper" (click)="changePhoto()">
+      <img [src]="profilePhoto || 'assets/shapes.svg'" alt="Avatar">
+      <div class="edit-badge"><ion-icon name="camera"></ion-icon></div>
+    </div>
+    
+    <h2 (click)="editData('name', t.name || 'Nome')">{{ userData.name }}</h2>
+    
+    <p class="user-email-text" (click)="editData('email', 'Email')">
+      {{ userData.email }}
+    </p>
   </div>
 
-  <h3 class="section-title">Sobre Mim</h3>
-  <ion-list lines="none" class="custom-list">
+  <div class="section-container">
     
-    <ion-item class="ion-margin-bottom">
-      <ion-icon slot="start" name="person-circle-outline" color="success"></ion-icon>
-      <ion-label>
-        <p>Nome do Utilizador</p>
-        <h3>Joel Fernandes</h3>
-      </ion-label>
+    <div class="health-card ion-activatable ripple-parent" routerLink="/health-stats">
+      <ion-ripple-effect></ion-ripple-effect>
+      
+      <div class="card-top-row">
+        <div class="bmi-display">
+          <span class="bmi-number" [style.color]="'var(--ion-color-' + bmiColor + ')'">
+            {{ imc | number:'1.1-1' }}
+          </span>
+          <div class="bmi-text-group">
+            <span class="bmi-label">{{ t.bmi || 'IMC' }}</span>
+            <span class="status-badge" [style.background]="'var(--ion-color-' + bmiColor + ')'">
+              {{ imcStatus }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-bar-container">
+        <div class="gradient-bar">
+          <div class="marker-arrow" [style.left.%]="bmiMarkerPosition">
+            <div class="triangle-down" [style.border-top-color]="'var(--ion-color-' + bmiColor + ')'"></div>
+          </div>
+        </div>
+        <div class="bar-labels">
+          <span>Magro</span>
+          <span>Normal</span>
+          <span>Sobre</span>
+          <span>Obeso</span>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="icon-bubble blue">
+            <ion-icon name="scale-outline"></ion-icon>
+          </div>
+          <div class="stat-text">
+            <span class="value">{{ userData.weight }} <small>kg</small></span>
+            <span class="label">{{ t.weight || 'Peso' }}</span>
+          </div>
+        </div>
+
+        <div class="vertical-line"></div>
+
+        <div class="stat-box">
+          <div class="icon-bubble orange">
+            <ion-icon name="flame-outline"></ion-icon>
+          </div>
+          <div class="stat-text">
+            <span class="value">{{ dailyGoal }} <small>kcal</small></span>
+            <span class="label">{{ t.goal || 'Meta' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <ion-icon name="chevron-forward" class="card-arrow-icon"></ion-icon>
+    </div>
+  </div>
+
+  <div class="section-header-clickable ion-activatable ripple-parent" routerLink="/achievements">
+    <ion-ripple-effect></ion-ripple-effect>
+    <div class="section-title">{{ t.achievements || 'Conquistas' }} 🏆</div>
+    <div class="see-all">{{ t.seeDetails || 'Ver Detalhes' }} <ion-icon name="chevron-forward"></ion-icon></div>
+  </div>
+
+  <div class="badges-grid ion-activatable ripple-parent" routerLink="/achievements">
+    <ion-ripple-effect></ion-ripple-effect>
+    
+    <div class="badge-item" *ngFor="let b of displayBadges" [class.locked]="!b.earned">
+      <div class="badge-icon" 
+           [style.background]="b.earned ? 'var(--ion-color-' + b.color + ')' : 'var(--ion-color-step-150)'"
+           [style.color]="b.earned ? '#fff' : 'var(--ion-color-medium)'">
+        <ion-icon [name]="b.icon"></ion-icon>
+      </div>
+      <span class="badge-name">{{ t[b.key] || b.defaultName }}</span>
+    </div>
+  </div>
+
+  <div class="section-title simple-title">{{ t.personalData || 'Dados Pessoais' }}</div>
+  <ion-list class="custom-list">
+    <ion-item button lines="none" (click)="editData('name', t.name)">
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      <ion-label><h3>{{ t.name || 'Nome' }}</h3><p>{{ userData.name }}</p></ion-label>
+      <ion-icon name="create-outline" slot="end" class="edit-icon"></ion-icon>
     </ion-item>
 
-    <ion-item class="ion-margin-bottom">
-      <ion-icon slot="start" name="mail-outline" color="success"></ion-icon>
-      <ion-label>
-        <p>Email</p>
-        <h3>Joel.fernandess.98@gmail.com</h3>
-      </ion-label>
+    <ion-item button lines="none" (click)="editData('phone', t.phone)">
+      <ion-icon name="call-outline" slot="start"></ion-icon>
+      <ion-label><h3>{{ t.phone || 'Telemóvel' }}</h3><p>{{ userData.phone || 'Sem número' }}</p></ion-label>
+      <ion-icon name="create-outline" slot="end" class="edit-icon"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <div class="section-title simple-title">{{ t.settings || 'Definições' }}</div>
+  <ion-list class="custom-list">
+    <ion-item lines="none">
+      <ion-icon name="alarm-outline" slot="start"></ion-icon>
+      <ion-label>{{ t.dailyReminder || 'Lembrete Diário' }}</ion-label>
+      <ion-toggle slot="end" [checked]="notificationsEnabled" (ionChange)="toggleNotifications($event)"></ion-toggle>
     </ion-item>
 
-    <ion-item class="ion-margin-bottom">
-      <ion-icon slot="start" name="call-outline" color="success"></ion-icon>
-      <ion-label>
-        <p>Número de Telefone</p>
-        <h3>+351 987 546 521</h3>
-      </ion-label>
+    <ion-item lines="none">
+      <ion-icon name="language-outline" slot="start"></ion-icon>
+      <ion-label>{{ t.language || 'Idioma' }}</ion-label>
+      <ion-select slot="end" interface="action-sheet" [value]="currentLanguage" (ionChange)="changeLanguage($event)">
+        <ion-select-option value="pt">Português</ion-select-option>
+        <ion-select-option value="en">English</ion-select-option>
+        <ion-select-option value="es">Español</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-icon name="moon-outline" slot="start"></ion-icon>
+      <ion-label>{{ t.darkMode || 'Modo Escuro' }}</ion-label>
+      <ion-toggle slot="end" [checked]="isDarkMode" (ionChange)="toggleTheme($event)"></ion-toggle>
+    </ion-item>
+
+    <ion-item button lines="none" routerLink="/privacy">
+      <ion-icon name="document-text-outline" slot="start"></ion-icon>
+      <ion-label>{{ t.terms || 'Termos e Condições' }}</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end" class="edit-icon"></ion-icon>
     </ion-item>
 
   </ion-list>
 
-  <h3 class="section-title">Definições</h3>
-  <ion-list lines="none" class="custom-list">
-    
-    <ion-item class="ion-margin-bottom">
-      <ion-icon slot="start" name="globe-outline" color="success"></ion-icon>
-      <ion-label>
-        <p>Idioma</p>
-        <h3>Português</h3>
-      </ion-label>
-    </ion-item>
+  <div class="logout-container">
+    <ion-button expand="block" class="logout-btn" color="danger" (click)="logout()">
+      <ion-icon name="log-out-outline" slot="start"></ion-icon>
+      {{ t.logout || 'Terminar Sessão' }}
+    </ion-button>
+    <p class="version-text">HealthTrack v1.0.0</p>
+  </div>
 
-    <ion-item class="ion-margin-bottom">
-      <ion-icon slot="start" name="moon-outline" color="success"></ion-icon>
-      <ion-label>
-        <h3>Modo Escuro</h3>
-        <p>Tema</p>
-      </ion-label>
-      <ion-toggle slot="end" color="success" [(ngModel)]="isDarkMode" (ionChange)="toggleTheme($event)"></ion-toggle>
-    </ion-item>
-
-    <ion-item button lines="none" class="logout-item">
-      <ion-icon slot="start" name="log-out-outline" color="success"></ion-icon>
-      <ion-label color="light">Log Out</ion-label>
-      <ion-note slot="end" class="privacy-link">Política de Privacidade</ion-note>
-    </ion-item>
-
-  </ion-list>
-
+  <div class="footer-spacer"></div>
 </ion-content>

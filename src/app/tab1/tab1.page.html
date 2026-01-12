@@ -1,58 +1,186 @@
-<ion-header [translucent]="true" class="ion-no-border">
-  <ion-toolbar>
-    <ion-title>Health Track</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content [fullscreen]="true" class="dashboard-content">
   
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Health Track</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <h2 class="ion-padding-start" style="font-weight: bold; margin-top: 10px;">
-    Atividades Recentes
-  </h2>
-
-  <ion-list lines="none" style="background: transparent;">
+  <div class="header-section">
+    <div class="text-container">
+      <p class="date">{{ today | date:'EEEE, d MMM' }}</p>
+      <h1>{{ greetingMessage }}, {{ userName }}</h1>
+    </div>
     
-    <ion-card *ngFor="let activity of activities$ | async" class="ion-margin-bottom">
-      <ion-card-header>
-        <ion-card-subtitle color="success">{{ activity.date | date:'dd/MM/yyyy HH:mm' }}</ion-card-subtitle>
-        <ion-card-title>{{ activity.type }}</ion-card-title>
-      </ion-card-header>
+    <div class="profile-icon" routerLink="/tabs/tab3">
+      <img [src]="profilePhoto || 'assets/icon/favicon.png'" alt="user">
+    </div>
+  </div>
 
-      <ion-card-content>
-        <p><strong>Duração:</strong> {{ activity.duration }} min</p>
-        <p><strong>Intensidade:</strong> {{ activity.intensity }}</p>
-        <p *ngIf="activity.notes" style="font-style: italic; color: #888;">"{{ activity.notes }}"</p>
-      </ion-card-content>
+  <div class="cards-container">
 
-      <ion-footer>
-        <ion-row>
-          <ion-col>
-            <ion-button expand="block" fill="clear" size="small" [routerLink]="['/edit-activity', activity.id]">
-              <ion-icon slot="start" name="create-outline"></ion-icon>
-              Editar / Detalhes
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-footer>
-    </ion-card>
+    <div class="stats-grid">
+      <div class="stat-mini-card blue">
+        <ion-icon name="footsteps"></ion-icon>
+        <div class="stat-data">
+          <strong>{{ totalStepsToday }}</strong>
+          <small>{{ t.stepsLabel || 'Passos' }}</small>
+        </div>
+      </div>
 
-    <div *ngIf="(activities$ | async)?.length === 0" class="ion-text-center ion-padding">
-      <p>Ainda não tens treinos registados.</p>
-      <p>Clica no + para começar!</p>
+      <div class="stat-mini-card red">
+        <ion-icon name="heart"></ion-icon>
+        <div class="stat-data">
+          <strong>{{ lastBPM }}</strong>
+          <small>{{ t.bpmLabel || 'BPM' }}</small> 
+        </div>
+      </div>
+
+      <div class="stat-mini-card orange">
+        <ion-icon name="flame"></ion-icon>
+        <div class="stat-data">
+          <strong>{{ streak$ | async }}</strong>
+          <small>{{ t.daysLabel || 'Dias' }}</small>
+        </div>
+      </div>
     </div>
 
-  </ion-list>
+    <div class="main-card ion-activatable ripple-parent" (click)="goToTab2()">
+      <ion-ripple-effect></ion-ripple-effect>
+      
+      <div class="card-header">
+        <h3>{{ t.todaysActivity || 'Atividade de Hoje' }}</h3>
+        <ion-icon name="chevron-forward" color="medium"></ion-icon>
+      </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="success" routerLink="/add-activity">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+      <div class="main-stats-row">
+        
+        <div class="progress-container">
+          <div class="progress-circle" [style.--percent]="(stats.caloriesToday / dailyGoal) * 100">
+            <div class="inner-circle">
+              <span class="value">{{ stats.caloriesToday | number:'1.0-0' }}</span>
+              <span class="label">{{ t.kcal || 'Kcal' }}</span>
+            </div>
+          </div>
+        </div>
 
+        <div class="side-stats">
+          <div class="stat-item">
+            <div class="icon-dot orange"></div>
+            <div>
+              <span class="stat-val">{{ stats.totalCalories | number:'1.0-0' }}</span>
+              <span class="stat-label">{{ t.totalKcal || 'Total' }}</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="icon-dot blue"></div>
+            <div>
+              <span class="stat-val">{{ stats.totalMinutes }}</span>
+              <span class="stat-label">{{ t.minutes || 'Minutos' }}</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="icon-dot green"></div>
+            <div>
+              <span class="stat-val">{{ stats.totalWorkouts }}</span>
+              <span class="stat-label">{{ t.workouts || 'Treinos' }}</span>
+            </div>
+          </div>
+        </div>
+      </div> <div class="card-footer" (click)="goToAdd(); $event.stopPropagation()">
+        <span>{{ t.registerNew || 'Registar novo treino' }}</span>
+        <ion-icon name="add-circle" color="primary"></ion-icon>
+      </div>
+
+    </div> <div class="content-card report-card hover-effect" (click)="goToTab2()">
+      <div class="card-header">
+        <h3>{{ t.monthlyReport || 'Relatório Mensal' }} 📊</h3>
+        <ion-icon name="chevron-forward" color="medium"></ion-icon>
+      </div>
+      
+      <div class="report-grid">
+        <div class="report-item">
+          <ion-icon name="fitness-outline" color="primary"></ion-icon>
+          <div class="report-info">
+            <small>{{ t.monthlyWorkouts || 'Treinos' }}</small>
+            <strong>{{ monthlyStats.totalCount }}</strong>
+          </div>
+        </div>
+
+        <div class="report-item">
+          <ion-icon name="time-outline" color="success"></ion-icon>
+          <div class="report-info">
+            <small>{{ t.monthlyMinutes || 'Minutos' }}</small>
+            <strong>{{ monthlyStats.totalMinutes }}m</strong>
+          </div>
+        </div>
+
+        <div class="report-item">
+          <ion-icon name="star-outline" color="warning"></ion-icon>
+          <div class="report-info">
+            <small>{{ t.mostPracticed || 'Top' }}</small>
+            <strong>{{ t[monthlyStats.topSport] || monthlyStats.topSport }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card hydration-card">
+      <div class="card-header">
+        <h3>{{ t.hydration || 'Hidratação' }}</h3>
+        <span class="date-badge success" *ngIf="waterCount >= waterGoal">
+          {{ t.completed || 'Concluído' }}
+        </span>
+      </div>
+
+      <div class="water-row">
+        <div class="water-icon-box">
+          <ion-icon name="water"></ion-icon>
+        </div>
+
+        <div class="water-info">
+          <div class="value-text">
+            <h4>
+              {{ waterCount }} 
+              <small>/ {{ waterGoal }} {{ t.cups || 'copos' }}</small>
+            </h4>
+          </div>
+          <div class="mini-progress-track">
+            <div class="mini-progress-fill" [style.width.%]="(waterCount / waterGoal) * 100"></div>
+          </div>
+        </div>
+
+        <div class="water-actions-mini">
+          <button class="mini-btn remove" (click)="updateWater(-1)" title="Remover copo">
+            <ion-icon name="remove"></ion-icon>
+          </button>
+          <button class="mini-btn add" (click)="updateWater(1)" title="Adicionar copo">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-header">
+        <h3>{{ t.weeklyStats || 'Semana' }}</h3>
+        <span class="subtitle">{{ t.trainingMinutes || 'Mins' }}</span>
+      </div>
+      
+      <div class="chart-container">
+        <div class="bar-group" *ngFor="let day of weeklyChart">
+          <div class="bar-track">
+            <div class="bar-fill" [style.height]="day.height" [class.active]="day.value > 0"></div>
+          </div>
+          <span class="day-label">{{ day.day.charAt(0) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dica-container animate__animated animate__fadeInUp">
+      <div class="icon-section">
+        <ion-icon name="bulb-outline"></ion-icon>
+      </div>
+      <div class="text-section">
+        <h3>{{ t.tipDay || 'Dica do Dia' }}</h3>
+        <p>"{{ dailyQuote }}"</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom-spacer"></div>
 </ion-content>

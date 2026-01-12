@@ -1,78 +1,88 @@
-// Cores da Imagem
-$neon-green: #82d446; // Um verde mais 'lima' como na imagem
-$dark-bg: #222222;
-
-.landing-bg {
-  --background: #{$dark-bg};
+ion-content {
+  --background: #f4f5f8; 
 }
 
-.container {
+.landing-container {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  padding: 30px;
+  justify-content: space-between; /* Espaça o logo dos botões */
+  padding: 60px 30px 50px 30px;
+  text-align: center;
 }
 
-// Título
-.main-title {
-  color: $neon-green;
-  font-weight: bold;
-  font-size: 32px;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-}
-
-// Logótipo (Truque para sobrepor os ícones)
-.logo-wrapper {
-  position: relative;
-  width: 150px;
-  height: 150px;
-  margin-bottom: 80px;
+/* --- LOGO --- */
+.logo-section {
+  margin-top: 50px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 
-  .heart-icon {
-    font-size: 140px;
-    color: $neon-green;
-    --ionicon-stroke-width: 40px; // Coração mais grosso
+  .app-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #00c853; /* Verde HealthTrack */
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
   }
 
-  .plus-icon {
-    position: absolute;
-    font-size: 60px;
-    color: $neon-green;
-    font-weight: 900;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -55%); // Ajuste fino para centrar
+  .logo-box {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Coração */
+    .heart-icon {
+      font-size: 140px;
+      color: #00c853;
+      stroke-width: 2px;
+    }
+
+    /* Cruz no meio */
+    .plus-icon {
+      position: absolute;
+      font-size: 50px;
+      color: #00c853;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%); 
+      font-weight: 900;
+    }
   }
 }
 
-// Botões
-.buttons-wrapper {
+/* --- BOTÕES --- */
+.actions-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   width: 100%;
-  max-width: 300px;
-}
 
-.btn-login {
-  --background: white;
-  --color: #{$neon-green};
-  --border-radius: 25px; // Arredondado
-  --box-shadow: none;
-  font-weight: bold;
-  margin-bottom: 15px;
-  height: 50px;
-  border: 2px solid $neon-green; // Borda verde opcional para ficar igual
-}
+  ion-button {
+    height: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: none; 
+    --border-radius: 25px; 
+    --box-shadow: none;
+  }
 
-.btn-register {
-  --background: #{$neon-green};
-  --color: white;
-  --border-radius: 25px; // Arredondado
-  --box-shadow: none;
-  font-weight: bold;
-  height: 50px;
+  /* Estilo Login (Outline) */
+  .btn-login {
+    --color: #00c853;
+    --border-color: #00c853;
+    --border-width: 2px;
+    --background: transparent;
+    --background-activated: rgba(0, 200, 83, 0.1);
+  }
+
+  /* Estilo Registar (Solid) */
+  .btn-register {
+    --background: #00c853;
+    --background-activated: #009624;
+    --color: #ffffff;
+  }
 }
